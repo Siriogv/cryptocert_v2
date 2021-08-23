@@ -1,0 +1,18 @@
+.table {
+    th,
+    td {
+        padding: 18px;
+        color: $headings-color;
+        font-weight: 500;
+    }
+}
+
+.table-responsive-sm {
+    min-width: 48rem;
+}
+
+// .table-striped {
+//     tbody tr:nth-of-type(#{$table-striped-order}) {
+//         background-color: lighten($primary, 45%);
+//     }
+// }
