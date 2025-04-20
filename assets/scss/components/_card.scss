@@ -1,0 +1,23 @@
+.card {
+    border: 0px;
+    margin-bottom: 30px;
+    background: $white;
+    border-radius: 5px;
+    box-shadow: 0px 36px 48px rgba(31, 66, 135, 0.04);
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $border-color;
+        background: transparent;
+        padding: 30px;
+        // margin: 0px 35px;
+    }
+    &-title {
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+    .card-body {
+        padding: 30px;
+    }
+}

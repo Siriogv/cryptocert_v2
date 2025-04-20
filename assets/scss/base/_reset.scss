@@ -1,0 +1,122 @@
+@import "../vendor/animate/animate.min.css";
+@import "../vendor/waves/waves.min.css";
+* {
+    outline: none;
+    padding: 0;
+    &::after {
+        margin: 0;
+        padding: 0;
+    }
+    &::before {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+body {
+    font-family: $font-family-base;
+    font-size: 16px;
+    color: $body-color;
+    line-height: 1.5rem;
+    // font-weight: 300;
+    background: $white;
+    overflow-x: hidden;
+    &.dashboard {
+        &:before {
+            content: "";
+            height: 300px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            position: fixed;
+            z-index: -9;
+            background: $primary;
+        }
+    }
+}
+
+#main-wrapper {
+    opacity: 0;
+    transition: all 0.25s ease-in;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    // height: 100vh;
+    padding-top: 75px;
+    &.show {
+        opacity: 1;
+    }
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: $body-color;
+    text-decoration: none;
+    outline: none;
+    &:hover,
+    &:focus,
+    &.active {
+        text-decoration: none;
+        outline: none;
+        color: $primary;
+    }
+}
+
+p {
+    line-height: 1.5;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    font-family: $font-family-base;
+}
+
+button,
+.btn {
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+button,
+.btn:not(:disabled):not(.disabled) {
+    &.active:focus,
+    &:active:focus {
+        box-shadow: none;
+    }
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $headings-color;
+    font-weight: 500;
+    // font-family: $pp;
+}
+
+.container {
+    max-width: 1500px;
+}
+
+
+/* Editable */

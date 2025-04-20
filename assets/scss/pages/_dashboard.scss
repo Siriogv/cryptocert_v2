@@ -1,0 +1,170 @@
+.homepage {
+    // margin-bottom: 50px;
+    position: relative;
+}
+
+.profile_chart {
+    &.card {
+        .card-header {
+            border: 0px;
+            // padding-bottom: 0px;
+            @include respond('phone-land') {
+                flex-direction: column;
+            }
+            .duration-option {
+                box-shadow: 0px 36px 48px rgba(31, 66, 135, 0.04);
+                a {
+                    display: inline-block;
+                    margin-left: 10px;
+                    text-align: center;
+                    padding: 5px 15px;
+                    border-right: 1px solid #F1F1F8;
+                    float: left;
+                    transition: all 0.3s ease;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    &:hover,
+                    &:focus,
+                    &.active {
+                        background: $primary;
+                        color: $white;
+                        border-right: 1px solid transparent;
+                    }
+                    // &:first-child {
+                    //     border-top-left-radius: 25px;
+                    //     border-bottom-left-radius: 25px;
+                    // }
+                    &:last-child {
+                        border: 0px;
+                    }
+                }
+            }
+        }
+        .card-body {
+            // padding: 10px 45px 30px;
+            .chart_current_data {
+                min-width: 165px;
+                border-radius: 16px;
+                background: $white;
+                padding: 13px 20px;
+                display: inline-block;
+                margin-bottom: 40px;
+                h3 {
+                    font-size: 36px;
+                    color: $primary;
+                    margin-bottom: 0px;
+                    line-height: 43px;
+                }
+                p {
+                    margin-bottom: 0px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: $headings-color;
+                }
+            }
+        }
+    }
+}
+
+#balance_graph {
+    height: 300px;
+}
+
+.transaction-table {
+    td {
+        padding: 1.25rem 0.75rem;
+    }
+    i.cc {
+        font-size: 22px;
+        margin-right: 10px;
+    }
+    .sold-thumb {
+        background: $danger;
+        color: $white;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+            font-weight: 700;
+            // font-size: 18px;
+        }
+    }
+    .buy-thumb {
+        background: $success;
+        color: $white;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+            font-weight: 700;
+            // font-size: 22px;
+        }
+    }
+}
+
+.balance-widget {
+    ul {
+        li {
+            padding: 18px 0;
+            align-items: center;
+            border-bottom: 1px solid $border-color;
+            i {
+                font-size: 30px;
+            }
+            &:last-child {
+                border: 0px;
+                padding-bottom: 0px;
+            }
+        }
+    }
+}
+
+.total-balance {
+    padding: 50px 0 35px;
+    text-align: center;
+}
+
+// Apps Download
+.apps-download {
+    background-image: url('./../images/app.png');
+    background-color: $white;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 2;
+    &::after {
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: $white;
+        opacity: 0.9;
+        z-index: -1;
+        border-radius: 5px;
+    }
+    // .card-title {
+    //     color: $white;
+    // }
+}
+
+.apps-download-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 387px;
+    li {
+        color: $white;
+        margin-bottom: 15px;
+    }
+}

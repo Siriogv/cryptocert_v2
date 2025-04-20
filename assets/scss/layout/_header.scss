@@ -1,0 +1,248 @@
+.header {
+    padding: 20px 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    transition: all 0.3s ease-in;
+    // border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    &.dashboard {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: $primary;
+        position: fixed;
+        &.fixed {
+            position: fixed;
+            background: $primary;
+        }
+    }
+    &.landing_page {
+        background: transparent;
+    }
+    .navbar-brand {
+        margin-right: 30px;
+        display: flex;
+        align-items: center;
+        img {
+            max-width: 35px;
+        }
+        @include respond('tab-land') {
+            margin-right: 30px;
+        }
+        span {
+            color: $white;
+            font-weight: 700;
+            margin-left: 20px;
+            font-size: 24px;
+        }
+    }
+    &.fixed {
+        position: fixed;
+        background: $primary;
+        transition: all 0.3s ease-in;
+    }
+}
+
+.header_auth {
+    .btn {
+        margin-left: 10px;
+        @include respond('tab-port') {
+            padding: 7px;
+            min-width: 110px;
+        }
+        @include respond('tab-port') {
+            display: none;
+        }
+    }
+}
+
+.navbar-toggler {
+    background: $white;
+}
+
+.navbar-nav {
+    @include respond('tab-port') {
+        background: $primary;
+        margin-top: 10px;
+        border-radius: 16px;
+        padding: 10px 0px;
+    }
+    .nav-item {
+        .nav-link {
+            padding: 0 20px;
+            color: $white!important;
+            font-weight: 500;
+            opacity: 0.5;
+            @include respond('tab-port') {
+                padding: 10px 20px !important;
+            }
+            @include respond('tab-land') {
+                padding: 10px 15px !important;
+            }
+            &:hover,
+            &:focus,
+            &.active {
+                opacity: 1;
+            }
+        }
+        // &.active {
+        //     .nav-link {
+        //         color: $white !important;
+        //         @include respond('tab-port') {
+        //             color: $white !important;
+        //         }
+        //     }
+        // }
+    }
+}
+
+.dashboard_log {
+    @include respond('tab-port') {
+        position: absolute;
+        right: 75px;
+        top: 15px;
+        margin: 0px !important;
+    }
+}
+
+// .dashboard_log {}
+.account_money {
+    margin-right: 20px;
+    @include respond('phone-land') {
+        display: none;
+    }
+    ul {
+        li {
+            display: inline;
+            justify-content: space-around;
+            &.crypto {
+                background: $white;
+                padding: 8px 15px 8px 22px;
+                color: $primary;
+                border-radius: 30px 0 0px 30px;
+                border: 1px solid $white;
+                transition: all 0.3s ease-in-out;
+                @include respond('tab-land') {
+                    padding: 8px 10px 8px 20px;
+                }
+                @include custommq($min: 1200px, $max: 1350px) {
+                    padding: 8px 10px 8px 20px;
+                }
+                span {
+                    margin-right: 10px;
+                    font-weight: 500;
+                    @include respond('tab-land') {
+                        margin-right: 10px;
+                    }
+                    @include custommq($min: 1200px, $max: 1350px) {
+                        margin-right: 10px;
+                    }
+                }
+                &:hover,
+                &:focus,
+                &.active {
+                    background: rgba(47, 44, 216, 1);
+                    color: $white;
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                }
+            }
+            &.usd {
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                padding: 8px 20px 8px 10px;
+                border-radius: 0px 30px 30px 0px;
+                @include respond('tab-land') {
+                    padding: 8px 20px 8px 10px;
+                }
+                @include custommq($min: 1200px, $max: 1350px) {
+                    padding: 8px 20px 8px 10px;
+                }
+                span {
+                    font-weight: 500;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+.profile_log {
+    cursor: pointer;
+    .user {
+        display: flex;
+        align-items: center;
+        .thumb {
+            height: 45px;
+            width: 45px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: inline-block;
+            margin-right: 15px;
+            background: $primary;
+            color: $white;
+            text-align: center;
+            padding: 10px 0;
+            i {
+                font-size: 20px;
+            }
+        }
+        .name {
+            margin-right: 30px;
+            font-size: 18px;
+            font-weight: 500;
+            color: $white;
+            @include respond('tab-land') {
+                display: none;
+            }
+            @include custommq($min: 1200px, $max: 1350px) {
+                display: none;
+            }
+        }
+        .arrow {
+            color: $white;
+            i {
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 16px;
+                margin-top: 6px;
+                display: inline-block;
+            }
+            @include respond('tab-land') {
+                display: none;
+            }
+        }
+    }
+    .dropdown-menu {
+        border: 0px;
+        padding: 0px;
+        margin: 0px;
+        top: 70px;
+        width: 220px;
+        box-shadow: 0 36px 48px rgba($color: #121158, $alpha: 0.08);
+        border-radius: 5px;
+        .dropdown-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #F1F1F8;
+            font-size: 16px;
+            color: $body-color;
+            font-weight: 500;
+            &.logout {
+                color: $danger;
+                i {
+                    color: $danger;
+                }
+            }
+            i {
+                margin-right: 10px;
+                font-size: 22px;
+                color: $primary;
+                font-weight: bold;
+            }
+            &:hover,
+            &:focus,
+            &.active {
+                background-color: transparent;
+            }
+        }
+    }
+}
