@@ -1,3 +1,18 @@
+php
+<?php
+// In filesearch.php (within the form for operator verification)
+
+// ... (other form code) ...
+
+<div class="form-group">
+    <label for="operator_code">Operator Verification Code:</label>
+    <input type="text" class="form-control" id="operator_code" name="operator_code">
+    <?php if(isset($_GET['operator']) && $_GET['operator'] == 'invalid'){ ?>
+      <div class="text-danger">Operator code not valid</div>
+    <?php } ?>
+</div>
+
+// ... (rest of the form and page code) ...
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

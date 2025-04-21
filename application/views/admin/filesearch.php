@@ -1,3 +1,39 @@
+php
+<?php
+
+// In filesearch.php (around line 113)
+
+// ... (other code) ...
+
+    // Example to load from db
+    // $this->load->model('files_model');
+    // $file_paths = $this->files_model->get_files();
+
+    // Example to get file paths
+    if (isset($file_paths)) {
+      foreach ($file_paths as $file_path) {
+
+        $filePath = $file_path->path; // Assuming you have 'path' column in your database
+
+        // Check if file exist
+        if (file_exists($filePath)) {
+          $file = fopen($filePath, "r"); // This should work now because it's a file path
+          if ($file) {
+              // ... (your code to read/process the file) ...
+              fclose($file);
+          } else {
+            // Error opening the file
+            echo "Errore aprendo il file";
+          }
+        } else {
+          // File not exist
+          echo "File non presente";
+        }
+
+      }
+    }
+// ... (other code) ...
+?>
 <style><style>
 * {
   box-sizing: border-box;
