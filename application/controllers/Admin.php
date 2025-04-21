@@ -733,6 +733,7 @@ public function deleteLog() {
 
     // Reindirizza alla pagina precedente o a un'altra pagina
     redirect('admin/log');
-}
-/* End of file welcome.php */
+    }
+ } // Ensure this is the closing brace of the Admin cla
+	/* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
