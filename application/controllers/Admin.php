@@ -711,5 +711,31 @@ function logout()
   	}	
 }
 
+  public function deleteLog() {
+        // Controlla i permessi dell'utente se necessario
+        if (!$this->session->userdata('is_logged_in')) {
+            redirect('login'); // Reindirizza al login se l'utente non è autenticato
+        }
+
+        // Percorso del file di log
+        $log_file_path = APPPATH . 'logs/logfile.log'; // Modifica il percorso se necessario
+
+        // Verifica se il file esiste
+        if (file_exists($log_file_path)) {
+            // Elimina il file di log
+            if (unlink($log_file_path)) {
+                $this->session->set_flashdata('success', 'Log eliminato con successo.');
+            } else {
+                $this->session->set_flashdata('error', 'Errore durante l\'eliminazione del log.');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Il file di log non esiste.');
+        }
+
+        // Reindirizza alla pagina precedente o a un'altra pagina
+        redirect('admin/log');
+    }
+}
+
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
