@@ -65,7 +65,8 @@
 								<div class="row">
 									<div class="col-12 form-group">
 										<label for="jsValidationAddress"><b>Operator verification code: <?=$unicode?> </b></label>
-										<input name="as2" id="jsValidationas2" type="text" class="form-control" placeholder="Enter the verification code">
+										<input name="as2"</div>
+ id="jsValidationas2" type="text" class="form-control" placeholder="Enter the verification code">
 										<input type="hidden" name="as1" value="<?=$unicode?>">
 										<p>This code ensures that the file has been uploaded by a human and is not spam</p>
 										<span class="valid-feedback">Fine!</span>
