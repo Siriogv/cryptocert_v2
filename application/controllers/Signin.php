@@ -25,13 +25,6 @@ class Signin extends CI_Controller {
         }
     }
 
-    public function signup()
-    {
-        $this->load->view('header');
-        $this->load->view('signup');
-        $this->load->view('footer');
-    }
-
     public function forgetpassword()
     {
         $this->load->model('model_object');
