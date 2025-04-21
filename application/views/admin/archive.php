@@ -1,26 +1,11 @@
 <?php
-// In filesearch.php (within the form for operator verification)
+// Nome utente loggato (dinamico in base alla sessione)
+$logged_user = htmlspecialchars($this->session->userdata('username'), ENT_QUOTES, 'UTF-8');
 
-// ... (other form code) ...
-
+// Percorso base dinamico per i file caricati dall'utente
+$base_upload_path = './cripted/archivio/' . $logged_user . '/';
 ?>
-<div class="form-group">
-    <label for="operator_code">Operator Verification Code:</label>
-    <input type="text" class="form-control" id="operator_code" name="operator_code">
-    <?php if (isset($_GET['operator']) && $_GET['operator'] == 'invalid') : ?>
-      <div class="text-danger">Operator code not valid</div>
-    <?php endif; ?>
-</div>
 
-// ... (rest of the form and page code) ...
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $(function() {
-    $("#datepicker").datepicker();
-  });
-</script>
 <main class="content">
   <div class="container-fluid">
     <div class="content-header">
@@ -36,6 +21,7 @@
     <div class="row">
       <div class="col-lg-12">
         <?php
+        // Form per il caricamento del file
         $attributes = array("name" => "archive", "id" => "archive");
         echo form_open_multipart("admin/archive", $attributes);
         ?>
@@ -43,6 +29,7 @@
           <h3></h3>
         </div>
         <div class="box-body">
+          <!-- Seleziona file -->
           <div class="row">
             <div class="col-sm-12 form-group">
               <label for="jsValidationFirstName">
@@ -52,10 +39,12 @@
               <p>(.zip o .rar) Currently Encrypter supports the following formats: 'txt', 'doc', 'xls', 'pdf', 'odt', 'jpg', 'pps', 'mp3', 'avi', 'mp4', 'gif', 'zip', 'rar', 'htm', 'html'</p>
             </div>
           </div>
+
+          <!-- Seleziona cartella -->
           <div class="row">
             <div class="col-sm-12 form-group">
               <label for="jsValidationFirstName">
-                <b>SELECT FOLDER WHERE YOU WANT TO KEPT FILE </b><sup class="text-danger">*</sup>
+                <b>SELECT FOLDER WHERE YOU WANT TO KEEP FILE </b><sup class="text-danger">*</sup>
               </label>
               <select name="folder" class="form-control">
                 <option value="">Select</option>
@@ -67,12 +56,16 @@
               </select>
             </div>
           </div>
+
+          <!-- Rinomina file -->
           <div class="row">
             <div class="col-12 form-group">
               <label for="jsValidationAddress"><b>Rename File</b></label>
               <input name="newname" id="jsValidationapubblic" type="text" class="form-control" placeholder="Rename File">
             </div>
           </div>
+
+          <!-- Codice operatore -->
           <div class="row">
             <div class="col-12 form-group">
               <label for="jsValidationAddress"><b>Operator verification code: <?= htmlspecialchars($unicode, ENT_QUOTES, 'UTF-8') ?> </b></label>
@@ -80,6 +73,8 @@
               <input type="hidden" name="as1" value="<?= htmlspecialchars($unicode, ENT_QUOTES, 'UTF-8') ?>">
             </div>
           </div>
+
+          <!-- Data scadenza -->
           <div class="row">
             <div class="col-12 form-group">
               <p>
@@ -88,6 +83,8 @@
             </div>
           </div>
         </div>
+
+        <!-- Pulsante invio -->
         <div class="box-footer">
           <button type="submit" class="btn btn-primary pull-right">Invia</button>
         </div>
@@ -96,3 +93,10 @@
     </div>
   </div>
 </main>
+
+<script>
+  // Inizializza il datepicker
+  $(function() {
+    $("#datepicker").datepicker();
+  });
+</script>
