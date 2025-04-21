@@ -700,42 +700,41 @@ class Admin extends CI_Controller {
 		//$this->load->view('footer');
 	}
 
-function logout()
-  	{
-		$ins['login_time'] = 0;
-		$ins['login_status'] =0;
-		$this->db->where('id',$_SESSION['logged_incheck']['id']);
-		$this->db->update("utenti",$ins); 
-		 $this->session->unset_userdata('logged_incheck');
-		 redirect('signin');
-  	}	
-}
-
-  public function deleteLog() {
-        // Controlla i permessi dell'utente se necessario
-        if (!$this->session->userdata('is_logged_in')) {
-            redirect('login'); // Reindirizza al login se l'utente non è autenticato
-        }
-
-        // Percorso del file di log
-        $log_file_path = APPPATH . 'logs/logfile.log'; // Modifica il percorso se necessario
-
-        // Verifica se il file esiste
-        if (file_exists($log_file_path)) {
-            // Elimina il file di log
-            if (unlink($log_file_path)) {
-                $this->session->set_flashdata('success', 'Log eliminato con successo.');
-            } else {
-                $this->session->set_flashdata('error', 'Errore durante l\'eliminazione del log.');
-            }
-        } else {
-            $this->session->set_flashdata('error', 'Il file di log non esiste.');
-        }
-
-        // Reindirizza alla pagina precedente o a un'altra pagina
-        redirect('admin/log');
-    }
-}
+703| function logout()
+704| {
+705|     $ins['login_time'] = 0;
+706|     $ins['login_status'] = 0;
+707|     $this->db->where('id', $_SESSION['logged_incheck']['id']);
+708|     $this->db->update("utenti", $ins); 
+709|     $this->session->unset_userdata('logged_incheck');
+710|     redirect('signin');
+711| }
+712| 
+713| public function deleteLog() {
+714|     // Controlla i permessi dell'utente se necessario
+715|     if (!$this->session->userdata('is_logged_in')) {
+716|         redirect('login'); // Reindirizza al login se l'utente non è autenticato
+717|     }
+718| 
+719|     // Percorso del file di log
+720|     $log_file_path = APPPATH . 'logs/logfile.log'; // Modifica il percorso se necessario
+721| 
+722|     // Verifica se il file esiste
+723|     if (file_exists($log_file_path)) {
+724|         // Elimina il file di log
+725|         if (unlink($log_file_path)) {
+726|             $this->session->set_flashdata('success', 'Log eliminato con successo.');
+727|         } else {
+728|             $this->session->set_flashdata('error', 'Errore durante l\'eliminazione del log.');
+729|         }
+730|     } else {
+731|         $this->session->set_flashdata('error', 'Il file di log non esiste.');
+732|     }
+733| 
+734|     // Reindirizza alla pagina precedente o a un'altra pagina
+735|     redirect('admin/log');
+736| }
+737| }
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
