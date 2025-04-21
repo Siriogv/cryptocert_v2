@@ -88,8 +88,8 @@
 										$n2=rand(1,9);
 										$n3=$n1+$n2;?>
 								<div class="form-group">
-									<div class="form-label">Enable Google Recapture</div>
-									<label class="form-radio-custom">
+									<div class="form-label">Enable Google reCAPTCHA</div>
+									<label class="form-radio-custom">  
 										<input type="radio" name="recapture" value="1" required <?php if($offcdata->enable_recapture){ echo "checked='checked'";}?>>
 										<span class="form-label">Yes</span>
 									</label>
@@ -99,19 +99,15 @@
 										
 									</label>
 								</div>
-								<div class="form-group row google_capture">
-									<label for="jsValidationRange" class="form-label col-3">Enter Google Secret Key</label>
-									<div class="col-9">
-									 <input id="jsValidationState" type="text" class="form-control" placeholder="Secret Key" name="secret"  value="<?=$offcdata->secret_key?>">
- 
+								<div class="form-group row google_capture">								
+									<label for="jsValidationRange" class="form-label col-3">Google Site Key</label>
+									<div class="col-3">
+										<input id="jsValidationState" type="text" class="form-control" placeholder="Site Key" name="site"  value="<?=$offcdata->site_key?>">
 									</div>
-								</div>
-								<div class="form-group row google_capture">
-									<label for="jsValidationRange" class="form-label col-3">Enter Google Site Key</label>
-									<div class="col-9">
-									 <input id="jsValidationState" type="text" class="form-control" placeholder="Site Key" name="site"  value="<?=$offcdata->site_key?>">
-			  
-									</div>
+									<label for="jsValidationRange" class="form-label col-3">Google Secret Key</label>
+									<div class="col-3">
+										<input id="jsValidationState" type="text" class="form-control" placeholder="Secret Key" name="secret"  value="<?=$offcdata->secret_key?>">
+									</div>									
 								</div>
 								<div class="form-group row">
 									<label for="jsValidationRange" class="form-label col-3">Antispam question: What is <?=$n1?>+ <?=$n2?>?</label>

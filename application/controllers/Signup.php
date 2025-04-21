@@ -79,7 +79,7 @@ class Signup extends CI_Controller {
 
     if ($insert) {
         // Logica per creare la cartella
-        $username = $this->input->post('nickname'); // Usa il nickname come nome della cartella
+        $username = $this->input->post('nickname'); 
         $directory = FCPATH . 'cripted/archivio/' . $username;
 
         // Controlla se la directory esiste già
