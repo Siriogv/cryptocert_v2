@@ -78,9 +78,6 @@ php
 
 
 	<link rel="icon" type="image/png" href="<?=base_url()?>/images/favicon/favicon-128x128.png" sizes="128x128" />
-php
-    // Example old route (in application/config/routes.php)
-    $route['admin/page-profile'] = 'admin/profile';
 
 
 
