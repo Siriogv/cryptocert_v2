@@ -1,0 +1,95 @@
+
+<style>
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        overflow-x: hidden;
+        transition: 0.5s;
+        z-index: 1;
+        background-color: #343a40;
+    }
+    .sidebar .nav-link {
+        padding: 10px 15px;
+        color: white;
+        transition: 0.3s;
+    }
+    .sidebar .nav-link:hover {
+        background-color: #495057;
+    }
+    .sidebar.open {
+        width: 250px;
+    }
+    .sidebar.icons-only {
+        width: 60px;
+    }
+    .sidebar.icons-only .nav-link span {
+        display: none;
+    }
+    #main {
+        transition: margin-left 0.5s;
+        padding: 20px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <i class="bi bi-house-door"></i> <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-gear"></i> <span>Services</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-people"></i> <span>Clients</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-envelope"></i> <span>Contact</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main id="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <button class="btn btn-primary mt-3" id="toggleButton">Toggle Sidebar</button>
+        </main>
+    </div>
+</div>
+
+<script>
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main');
+    const toggleButton = document.getElementById('toggleButton');
+    let state = 0; // 0: closed, 1: icons-only, 2: open
+
+    toggleButton.addEventListener('click', () => {
+        if (state === 0) {
+            sidebar.classList.remove('closed');
+            sidebar.classList.add('icons-only');
+            sidebar.style.width = '60px';
+            main.style.marginLeft = '60px';
+            state = 1;
+        } else if (state === 1) {
+            sidebar.classList.remove('icons-only');
+            sidebar.classList.add('open');
+            sidebar.style.width = '250px';
+            main.style.marginLeft = '250px';
+            state = 2;
+        } else {
+            sidebar.classList.remove('open', 'icons-only');
+            sidebar.style.width = '0';
+            main.style.marginLeft = '0';
+            state = 0;
+        }
+    });
+
+    sidebar.style.width = '0';
+    main.style.marginLeft = '0';
+</script>
