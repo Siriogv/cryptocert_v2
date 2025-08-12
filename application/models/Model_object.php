@@ -33,20 +33,27 @@ class model_object extends CI_Model
 	    $query = $this->db->get();   
 	    return $query->result();	
     } 
-	function getAllFromWhere($table,$where)
+        function getAllFromWhere($table,$where)
     {
-		
-	    $query=$this->db->query("SELECT * FROM ".$table." where ".$where); 
-	    return $query->result();	
-		
-    } 
+            if (is_array($where)) {
+                $query = $this->db->get_where($table, $where);
+            } else {
+                $query = $this->db->query("SELECT * FROM ".$table." where ".$where);
+            }
+            return $query->result();
+
+    }
     function getAllFromWhereParticular($table,$where,$particular)
     {
-		
-	    $query=$this->db->query("SELECT ".$particular." FROM ".$table." where ".$where); 
-	    return $query->row();	
-		
-    } 
+            if (is_array($where)) {
+                $this->db->select($particular);
+                $query = $this->db->get_where($table, $where);
+            } else {
+                $query=$this->db->query("SELECT ".$particular." FROM ".$table." where ".$where);
+            }
+            return $query->row();
+
+    }
 	function getAllByStatus($table)
     {
 	    $this->db->select('*');
