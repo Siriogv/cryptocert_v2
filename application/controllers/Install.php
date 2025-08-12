@@ -571,7 +571,7 @@ class Install extends CI_Controller {
 
 		$logodefault = base_url()."images/logo.png";
 
-		$password=md5($this->input->post('password'));
+                $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
 		$fresh="Amministrazione";
 
@@ -592,7 +592,7 @@ class Install extends CI_Controller {
 
 		$insur['email'] = $this->input->post('email');
 
-		$insur['password'] = $password;
+                $insur['password'] = $password;
 
 		$insur['tipologiaUtente'] = $admin;
 
