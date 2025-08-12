@@ -21,10 +21,11 @@ class Home extends CI_Controller {
          parent::__construct();
     	 $this->load->helper('url');
 		 $this->load->library('session');
-		 $this->load->library('form_validation');	
-		
-		 $this->load->model('model_object'); 
-		
+         $this->load->library('form_validation');
+
+         $this->load->model('model_object');
+         $this->load->model('model_admin');
+
     }
 
 	public function index()
@@ -35,49 +36,11 @@ class Home extends CI_Controller {
 		//$this->load->view('footer');
 	}
 	
-	public function login()
- 	{
- 	//echo md5("12345");
-		$this->form_validation->set_rules('email', 'Username', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
-		$data['title']='MedicalCms/Login';
-		$data['attributes'] = array('class' => 'form col', 'id' => 'myform');
-		
-	  if($_POST)
-	   {
-		   $username = $this->input->post('email');
-		   $password = $this->input->post('password');
-		   $result = $this->model_admin->check_login($username, $password);
-		   if($result)
-		   {
-			
-			 $sess_array = array();
-			
-			   $getUser=$this->model_object->getElementById('admin',$result[0]->id);
-			   $sess_array = array(
-				 'id' => $getUser->id,
-				 'email' => $getUser->email,
-				 'name'=>$getUser->fname.' '.$getUser->lname,
-				 'role_id' => $getUser->role_id
-			   );
-			 $this->session->set_userdata('logged_incheck', $sess_array);
-			 redirect('');
-		   }
-		   else
-		   {
-			 $this->session->set_userdata('error',"Ooops! Login Failed");			 
-		   }
-	   }
-	   
-	   $this->load->view('login',$data);
-	 
-	}
-	 
 function logout()
-  	{
-		 $this->session->unset_userdata('logged_incheck');
-		 redirect('home');
-  	}	
+        {
+                 $this->session->unset_userdata('logged_incheck');
+                 redirect('home');
+        }
 }
 
 /* End of file welcome.php */
