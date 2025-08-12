@@ -55,17 +55,12 @@ s0.parentNode.insertBefore(s1,s0);
         // Toggle sidebar functionality
         $(document).ready(function() {
           const sidebar = $('#sidebar');
-          const toggleButton = $('#sidebar-toggle');
-          const mainContent = $('.main-content');
-        
-            toggleButton.on('click', function() {
-              sidebar.toggleClass('active');
-              sidebar.removeClass('icon-only'); // Ensure full width when active
-              adjustMainContentMargin();
-            });
-          
-            // Hover effect to show icons only
+          $('#sidebar-toggle').on('click', function(){
+            sidebar.toggleClass('icon-only');
+            sidebar.toggleClass('active', !sidebar.hasClass('icon-only'));
+            adjustMainContentMargin();
           });
+        });
 
 
 
