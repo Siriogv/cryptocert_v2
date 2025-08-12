@@ -12,7 +12,7 @@ class Signin extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Sign in';
-        $path = "./application/config/database.php";
+        $path = APPPATH . 'config/database.php';
 
         if (!file_exists($path)) {
             redirect('/install/index', 'refresh');
