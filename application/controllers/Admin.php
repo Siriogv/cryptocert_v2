@@ -25,16 +25,26 @@ class Admin extends CI_Controller {
 		 $this->load->library('form_validation');	
 		 $this->load->model('model_user');
 		 $this->load->model('model_object');
-		 $time = $_SESSION['logged_incheck']['time'];
-		 $time_check=$time-600;
-		 $ins['login_time'] = $time_check;
-		 $this->db->where('login_status',1);
-		 $this->db->update("utenti",$ins);
-		 if($time<$time_check) {
-			
-			 redirect('install/unlock/');
-			 
-		 }
+                if (!isset($_SESSION['logged_incheck']) || !is_array($_SESSION['logged_incheck']) || !isset($_SESSION['logged_incheck']['time'])) {
+                        redirect('signin');
+                }
+
+                $time       = $_SESSION['logged_incheck']['time'];
+                $now        = time();
+                $timeout    = 600; // seconds
+
+                // Se il tempo trascorso supera la soglia, reindirizza alla schermata di sblocco
+                if ($now - $time > $timeout) {
+                        redirect('install/unlock/');
+                }
+
+                // Aggiorna il tempo di login per l'utente corrente
+                $ins['login_time'] = $now;
+                $this->db->where('login_status', 1);
+                $this->db->update("utenti", $ins);
+
+                // Aggiorna anche la sessione per mantenere l'utente attivo
+                $_SESSION['logged_incheck']['time'] = $now;
 		 
 		
     }
