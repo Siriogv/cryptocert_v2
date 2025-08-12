@@ -33,7 +33,7 @@
 
                 <div class="mb-3">
                     <label class="form-checkbox-custom">
-                        <input type="checkbox" value="remember-me" id="remember_me">
+                        <input type="checkbox" value="remember-me" id="remember_me" name="rememberme">
                         <span class="form-label">Remember me</span>
                     </label>
                 </div>
@@ -55,33 +55,3 @@
 </div>
 </main>
 </div>
-
-<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-<script>
-    $(function() {
-
-        if (localStorage.chkbx && localStorage.chkbx != '') {
-            $('#remember_me').attr('checked', 'checked');
-            $('#loginEmail').val(localStorage.usrname);
-            $('#loginPassword').val(localStorage.pass);
-        } else {
-            $('#remember_me').removeAttr('checked');
-            $('#loginEmail').val('');
-            $('#loginPassword').val('');
-        }
-
-        $('#remember_me').click(function() {
-
-            if ($('#remember_me').is(':checked')) {
-                // save username and password
-                localStorage.usrname = $('#loginEmail').val();
-                localStorage.pass = $('#loginPassword').val();
-                localStorage.chkbx = $('#remember_me').val();
-            } else {
-                localStorage.usrname = '';
-                localStorage.pass = '';
-                localStorage.chkbx = '';
-            }
-        });
-    });
-</script>

@@ -63,12 +63,12 @@ class Signin extends CI_Controller {
     {
         $this->load->model(['model_object', 'model_user']);
 
-        if ($this->input->post('rememberme') === 'remember') {
+        if ($this->input->post('rememberme')) {
             set_cookie([
                 'name'   => 'remember_me_token',
                 'value'  => 'Random string',
                 'expire' => '1209600', // Two weeks
-                'domain' => 'cryptocert.oonthe.link/',
+                'domain' => 'cryptocert.oonthe.link',
                 'path'   => '/'
             ]);
         }
