@@ -47,10 +47,10 @@ class Admin extends CI_Controller {
 			if($_SESSION['logged_incheck']['tipologiaUtente']=='admin'){
 				$data['certificat'] = $this->model_object->getAll('contenuto_certificato');	
 			}else{
-                $data['certificat'] = $this->model_object->getAllFromWhere('contenuto_certificato','operatore="'.$_SESSION['logged_incheck']['id'].'"');
+               $data['certificat'] = $this->model_object->getAllFromWhere('contenuto_certificato', ['operatore' => $_SESSION['logged_incheck']['id']]);
 			}
 			$data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
-			$data['userdata'] = $this->model_object->getAllFromWhere('utenti','`id`<> 1');
+               $data['userdata'] = $this->model_object->getAllFromWhere('utenti', ['id <>' => 1]);
 			
 			//echo "<pre>";print_r($_SESSION['logged_incheck']);echo $_SESSION['logged_incheck']['dipartimento '];die;
 	   		$this->load->view('admin/adminheader',$data);
@@ -184,7 +184,7 @@ class Admin extends CI_Controller {
 			$data['unicode']= $unicode;
 			$data['title'] = "Archive";
 			$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
-			$data['files'] = $this->model_object->getAllFromWhere('cartelle_utenti','user="'.$_SESSION['logged_incheck']['id'].'"');
+                   $data['files'] = $this->model_object->getAllFromWhere('cartelle_utenti', ['user' => $_SESSION['logged_incheck']['id']]);
 			//$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
 			$data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
 	   		$this->load->view('admin/adminheader',$data);
@@ -197,7 +197,7 @@ class Admin extends CI_Controller {
 	 
 	public function deletefile($id){
 		$id = $id;
-		$delfiles = $this->model_object->getAllFromWhere('contenuto_certificato','id="'.$id.'"');
+           $delfiles = $this->model_object->getAllFromWhere('contenuto_certificato', ['id' => $id]);
 		$this->db->delete('archivio', array('original' => $delfiles[0]->path));
 		$this->db->delete('registro', array('path' => $delfiles[0]->path));
 		$this->db->delete('contenuto_certificato', array('id' => $id));
@@ -533,7 +533,7 @@ class Admin extends CI_Controller {
 		    if(file_exists($dir)){
 				$b = scandir($dir,1);//print_r($b);die;
 			}
-			$data['files'] = $this->model_object->getAllFromWhere('cartelle_utenti','user="'.$_SESSION['logged_incheck']['id'].'"');
+                   $data['files'] = $this->model_object->getAllFromWhere('cartelle_utenti', ['user' => $_SESSION['logged_incheck']['id']]);
 		    //$data['files'] = $b;
 			$data['department'] = $this->model_object->getAll('dipartimenti');
 			$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
@@ -584,7 +584,7 @@ class Admin extends CI_Controller {
 
 		$ip=$_SERVER['REMOTE_ADDR'];
 		$date=date("d/m/Y H:i");
-		$q=$this->model_object->getAllFromWhere('contenuto_certificato','hex="'.$_GET[h].'"');
+           $q = $this->model_object->getAllFromWhere('contenuto_certificato', ['hex' => $_GET['h']]);
 		//$q=mysql_query("SELECT * FROM contenuto_certificato WHERE hex='$_GET[h]'");
 		//$r=mysql_fetch_array($q);
 		$u=mysql_query("SELECT * FROM comunicazioni_visure");
@@ -624,7 +624,7 @@ class Admin extends CI_Controller {
 		if($_SESSION['logged_incheck']['tipologiaUtente']=='admin'){
 			$data['certificat'] = $this->model_object->getAll('contenuto_certificato');	
 		}else{
-			$data['certificat'] = $this->model_object->getAllFromWhere('contenuto_certificato','operatore="'.$_SESSION['logged_incheck']['id'].'"');
+                   $data['certificat'] = $this->model_object->getAllFromWhere('contenuto_certificato', ['operatore' => $_SESSION['logged_incheck']['id']]);
 		}
 		//echo "<pre>";print_r($data['certificat']);die;
 		$data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
@@ -638,7 +638,7 @@ class Admin extends CI_Controller {
 	public function certifyfile(){ //die();
 		$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
 		
-	    $data['certificat'] = $this->model_object->getAllFromWhere('contenuto_certificato','id="'.$this->input->get('docid').'"');
+       $data['certificat'] = $this->model_object->getAllFromWhere('contenuto_certificato', ['id' => $this->input->get('docid')]);
 	    $data['docid'] = $this->input->get('docid');
 		$data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
 		//print_r($data['certificat']);die;
@@ -688,7 +688,7 @@ class Admin extends CI_Controller {
 		}
 			$data['title'] = "Message encryption";
 			$data['title1'] = "Retrieve sha256 code";
-			$data['message'] = $this->model_object->getAllFromWhere('messaggi',"`operatore`='".$_SESSION['logged_incheck']['id']."'");
+                   $data['message'] = $this->model_object->getAllFromWhere('messaggi', ['operatore' => $_SESSION['logged_incheck']['id']]);
 			$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
 			$data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
 			$this->load->view('admin/adminheader',$data);

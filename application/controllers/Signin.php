@@ -114,7 +114,7 @@ class Signin extends CI_Controller {
                     'login_status' => 1
                 ]);
 
-                $getexpiry = $this->model_object->getAllFromWhere('contenuto_certificato', 'scadenza <= ' . date('d/m/Y'));
+               $getexpiry = $this->model_object->getAllFromWhere('contenuto_certificato', ['scadenza <=' => date('d/m/Y')]);
                 foreach ($getexpiry as $filedel) {
                     $this->db->delete('contenuto_certificato', ['id' => $filedel->id]);
                     $this->db->delete('archivio', ['original' => $filedel->path]);
@@ -317,7 +317,7 @@ class Signin extends CI_Controller {
 			 $ins['login_time'] = time();
 			 $ins['login_status'] = 1;
 			 $this->db->update("utenti",$ins);
-			 $getexpiry = $this->model_object->getAllFromWhere('contenuto_certificato','scadenza <= '.date('d/m/Y'));
+                        $getexpiry = $this->model_object->getAllFromWhere('contenuto_certificato', ['scadenza <=' => date('d/m/Y')]);
 			 foreach($getexpiry as $filedel){//print_r($filedel);
 				$this->db->delete('contenuto_certificato', array('id' => $filedel->id));
 				$this->db->delete('archivio', array('original' => $filedel->path));
