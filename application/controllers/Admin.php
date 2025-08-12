@@ -55,14 +55,9 @@ class Admin extends CI_Controller {
 			$data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
 			$data['userdata'] = $this->model_object->getAllFromWhere('utenti','`id`<> 1');
 			
-			//echo "<pre>";print_r($_SESSION['logged_incheck']);echo $_SESSION['logged_incheck']['dipartimento '];die;
-	   		$this->load->view('admin/adminheader',$data);
-			$this->load->view('admin/dashboard',$data);
-			$this->load->view('admin/adminfooter',$data);
-		
-		
-
-		//$this->load->view('footer');
+                        $this->load->view('admin/adminheader',$data);
+                        $this->load->view('admin/dashboard',$data);
+                        $this->load->view('admin/adminfooter',$data);
 	}
 
 	public function unlock(){
