@@ -580,34 +580,40 @@ class Admin extends CI_Controller {
 	    redirect('/admin/userpermission', 'refresh');
 	}
 	
-	public function file(){
+        public function file(){
 
-		$ip=$_SERVER['REMOTE_ADDR'];
-		$date=date("d/m/Y H:i");
-		$q=$this->model_object->getAllFromWhere('contenuto_certificato','hex="'.$_GET[h].'"');
-		//$q=mysql_query("SELECT * FROM contenuto_certificato WHERE hex='$_GET[h]'");
-		//$r=mysql_fetch_array($q);
-		$u=mysql_query("SELECT * FROM comunicazioni_visure");
-		$ru=mysql_fetch_array($u);
-		
-		if($q[0]->alert == 0){
-			$message="<font color='#008000'>Status OK</font>";
-		}else{
-			$message="<font color='#FF0000'>Status Broken</font>";
-		}
-		if(!$q=mysql_query("INSERT INTO visure (data, ip, hex) VALUES ('$date', '$ip', '$_GET[h]')")) 
-		die ("Errore critico, notifica non registrata");
-		
-		echo"
-		<div id='headerimg' class='container limited'>
-		<div class='row'>
-		<div class='col-md-12'>
-		<h5>Richiesta pervenuta da: $ip</h5>
-		<h5>Il $date </h5>
-		<h5>Check: $message</h5>
-		<h5><a href='' javascript: 'window.close();'></h5>		
-		";
-	   }
+                $hex = $this->input->get('h', TRUE);
+                if (!$hex || !ctype_xdigit($hex)) {
+                        show_error('Invalid request');
+                }
+
+                $ip   = $this->input->ip_address();
+                $date = date("d/m/Y H:i");
+
+                $q = $this->db->where('hex', $hex)->get('contenuto_certificato')->row();
+                $ru = $this->db->get('comunicazioni_visure')->row();
+
+                if ($q && $q->alert == 0) {
+                        $message="<font color='#008000'>Status OK</font>";
+                } else {
+                        $message="<font color='#FF0000'>Status Broken</font>";
+                }
+
+                $insertData = array('data' => $date, 'ip' => $ip, 'hex' => $hex);
+                if (!$this->db->insert('visure', $insertData)) {
+                        show_error("Errore critico, notifica non registrata");
+                }
+
+                echo"
+                <div id='headerimg' class='container limited'>
+                <div class='row'>
+                <div class='col-md-12'>
+                <h5>Richiesta pervenuta da: $ip</h5>
+                <h5>Il $date </h5>
+                <h5>Check: $message</h5>
+                <h5><a href='' javascript: 'window.close();'></h5>
+                ";
+           }
 	
 
 
