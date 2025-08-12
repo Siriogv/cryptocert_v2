@@ -8,6 +8,7 @@
     <title><?=$title?> </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url();?>assets/images/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="<?=base_url();?>assets/vendor/waves/waves.min.css">
     <link rel="stylesheet" href="<?=base_url();?>assets/vendor/owlcarousel/css/owl.carousel.min.css">
