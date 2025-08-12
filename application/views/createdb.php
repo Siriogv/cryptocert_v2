@@ -10,28 +10,28 @@
 						</div>
 						<?php $attributes = array("name" => "usersignup","id"=> "usersignup","class"=>"box-body needs-validation");
 						echo form_open_multipart("install/dbhost", $attributes);?>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="regFirstName">Enter Host Name</label>
 								<input id="regFirstName" type="text" required class="form-control" placeholder="Host" name="hostname">
 								<span class="invalid-feedback">Field is required.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="regLastName">Enter User Name</label>
 								<input id="regLastName" type="text" required class="form-control" placeholder="Enter Username" name="username">
 								<span class="invalid-feedback">Field is required.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="regEmail">Enter Password</label>
 								<input id="regEmail" type="password" class="form-control" placeholder="Enter your password" name="password">
 								<span class="invalid-feedback">Field is required.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="signupPassword">Database Name</label>
 								<input id="signupPassword" type="text" required class="form-control" placeholder="Enter Database Name" name="database">
 								<span class="invalid-feedback">Min length is 6 symbols.</span>
 							</div>
 
-							<div class="form-group">
+							<div class="mb-3">
 								<button class="btn btn-block btn-primary">Create Db</button>
 							</div>
 							<a class="btn btn-link btn-block" href="page-signin.html"><i class="fas fa-arrow-circle-left"></i> Go Back</a>

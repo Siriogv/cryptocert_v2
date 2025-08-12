@@ -60,15 +60,15 @@
                             </div>
                             <div class="card-body">
                                     <form method="post" name="myform" class="signup_validate">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Username</label>
                                         <input type="text" class="form-control" placeholder="username" name="username">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Email</label>
                                         <input type="email" class="form-control" placeholder="hello@example.com" name="email">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Password</label>
                                         <input type="password" class="form-control" placeholder="Password" name="password">
                                     </div>

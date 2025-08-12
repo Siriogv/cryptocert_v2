@@ -12,12 +12,12 @@
                                    echo form_open_multipart("signin/forgetpassword", $attributes);?>
 						<div class="box-body">
 							<p>Please, enter your account email address. After submit, you'll get a new message from us. Follow to link to recover your password.</p>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="loginEmail">Email</label>
 								<input id="loginEmail" required type="email" class="form-control" placeholder="Enter your email">
 								<span class="invalid-feedback">Enter valid email address.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<button class="btn btn-block btn-primary">Send</button>
 							</div>
 							<a class="btn btn-link btn-block" href="<?php echo base_url()?>"><i class="fas fa-arrow-circle-left"></i> Go Back</a>

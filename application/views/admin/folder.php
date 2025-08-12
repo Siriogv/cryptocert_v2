@@ -17,7 +17,7 @@
 							
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationnominativo"><b>Enter the name of Folder</b></label>
 										<input id="jsValidationnominativo" name="folder" type="text" class="form-control" required>
 										

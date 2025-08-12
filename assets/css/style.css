@@ -955,17 +955,17 @@ h6 {
   padding: 30px;
 }
 
-.form-group {
+.mb-3 {
   margin-bottom: 30px;
   position: relative;
 }
-.form-group label {
+.mb-3 label {
   font-size: 16px;
   font-weight: 500;
   color: #121158;
   margin-bottom: 15px;
 }
-.form-group .form-control {
+.mb-3 .form-control {
   border-radius: 5px;
   min-height: 50px;
   border: 1px solid #D6D5FA;
@@ -975,28 +975,28 @@ h6 {
   color: #515184;
   transition: all 0.3s ease-in-out;
 }
-.form-group .form-control .select {
+.mb-3 .form-control .select {
   padding: 12px 0;
 }
-.form-group .form-control span {
+.mb-3 .form-control span {
   margin-top: 0;
 }
-.form-group .form-control::-webkit-input-placeholder {
+.mb-3 .form-control::-webkit-input-placeholder {
   color: #AEAED5;
 }
-.form-group .form-control:-ms-input-placeholder {
+.mb-3 .form-control:-ms-input-placeholder {
   color: #AEAED5;
 }
-.form-group .form-control::placeholder {
+.mb-3 .form-control::placeholder {
   color: #AEAED5;
 }
-.form-group .form-control:hover, .form-group .form-control:focus, .form-group .form-control:active, .form-group .form-control.active {
+.mb-3 .form-control:hover, .mb-3 .form-control:focus, .mb-3 .form-control:active, .mb-3 .form-control.active {
   box-shadow: none !important;
   outline: none;
   border-color: #0d6efd;
   color: #515184;
 }
-.form-group .input-group-text {
+.mb-3 .input-group-text {
   font-size: 24px;
   padding: 5px 15px;
   background: #0d6efd;

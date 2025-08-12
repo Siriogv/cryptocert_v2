@@ -449,14 +449,14 @@
 								<h3>Quick email</h3>
 							</div>
 							<div class="box-body">
-								<div class="form-group">
+								<div class="mb-3">
 									<label for="email">Email to:</label>
 									<input type="email" class="form-control" id="email" required placeholder="Enter email">
 									<span class="valid-feedback">Fine!</span>
 									<span class="invalid-feedback">Email field is required.</span>
 								</div>
 																
-								<div class="form-group">
+								<div class="mb-3">
 									<label for="subject">Subject</label>
 									<input type="text" class="form-control" id="subject" maxlength="100" required placeholder="Enter subject">
 									<span class="valid-feedback">Fine!</span>

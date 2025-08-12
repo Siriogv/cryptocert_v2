@@ -27,7 +27,7 @@
 							</div>
 							<?php  }?>
 							<div class="box-body">
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMin" class="form-label col-3">Logo</label>
 									<div class="col-9">
 							<input id="jsValidationFirstName" type="file" class="form-control" placeholder="Logo" <?php if($offcdata->logo==''){?>required <?php }?> name="logo">
@@ -40,7 +40,7 @@
 									</div>
 								</div>
 								<?php if($offcdata->logo!=''){?>
-								<div class="form-group">
+								<div class="mb-3">
 									<div class="form-label">Change Logo</div>
 									
 									<label class="form-radio-custom">
@@ -54,7 +54,7 @@
 									</label>
 								</div>
 								<?php }?></span>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMax" class="form-label col-3">Business name</label>
 									<div class="col-9">
 									    <input id="jsValidationLastName" type="text" class="form-control" name="intestazione" placeholder="Business name" required value="<?=$offcdata->intestazione?>">
@@ -62,7 +62,7 @@
 										<span class="invalid-feedback">Field is required.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthRange" class="form-label col-3">Email office</label>
 									<div class="col-9">
 									    <input id="jsValidationEmail" type="email" class="form-control" placeholder="Email" name="email" required value="<?=$offcdata->email?>">
@@ -70,14 +70,14 @@
 										<span class="invalid-feedback">Field is required and must be email.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Phone</label>
 									<div class="col-9">
 									    <input id="jsValidationAddress" type="text" class="form-control" placeholder="Phone" name="telefono" value="<?=$offcdata->telefono?>">
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMax" class="form-label col-3">wallet</label>
 									<div class="col-9">
 									<input id="jsValidationCity" type="text" class="form-control" placeholder="wallet" name="wallet" value="<?=$offcdata->wallet?>"> 
@@ -87,7 +87,7 @@
 								<?php  $n1=rand(1,9);
 										$n2=rand(1,9);
 										$n3=$n1+$n2;?>
-								<div class="form-group">
+								<div class="mb-3">
 									<div class="form-label">Enable Google reCAPTCHA</div>
 									<label class="form-radio-custom">  
 										<input type="radio" name="recapture" value="1" required <?php if($offcdata->enable_recapture){ echo "checked='checked'";}?>>
@@ -99,7 +99,7 @@
 										
 									</label>
 								</div>
-								<div class="form-group row google_capture">								
+								<div class="mb-3 row google_capture">								
 									<label for="jsValidationRange" class="form-label col-3">Google Site Key</label>
 									<div class="col-3">
 										<input id="jsValidationState" type="text" class="form-control" placeholder="Site Key" name="site"  value="<?=$offcdata->site_key?>">
@@ -109,7 +109,7 @@
 										<input id="jsValidationState" type="text" class="form-control" placeholder="Secret Key" name="secret"  value="<?=$offcdata->secret_key?>">
 									</div>									
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationRange" class="form-label col-3">Antispam question: What is <?=$n1?>+ <?=$n2?>?</label>
 									<div class="col-9">
 									 <input id="jsValidationState" type="text" class="form-control" placeholder="antispam" name="antispam">

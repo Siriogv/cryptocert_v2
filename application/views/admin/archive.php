@@ -26,7 +26,7 @@
                 </div>
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-sm-12 form-group">
+                        <div class="col-sm-12 mb-3">
                             <label for="jsValidationFirstName">
                                 <b>SELECT A FILE OR A COMPRESSED FOLDER </b><sup class="text-danger">*</sup>
                             </label>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 form-group">
+                        <div class="col-sm-12 mb-3">
                             <label for="jsValidationFirstName">
                                 <b>SELECT FOLDER WHERE YOU WANT TO KEPT FILE </b><sup class="text-danger">*</sup>
                             </label>
@@ -50,14 +50,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                             <label for="jsValidationAddress"><b>Rename File</b></label>
                             <input name="newname" id="jsValidationapubblic" type="text" class="form-control" placeholder="Rename File">
                             <span class="valid-feedback">Fine!</span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                             <label for="jsValidationAddress"><b>Operator verification code: <?=$unicode?> </b></label>
                             <input name="as2" id="jsValidationas2" type="text" class="form-control" placeholder="Enter the verification code">
                             <input type="hidden" name="as1" value="<?=$unicode?>">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                             <p>
                                 <input name="scadenza" id="datepicker" type="text" class="form-control" autocomplete="off" placeholder="click in the field to enter the date">
                             <p>Indicate the Notarizing Date of the file</p>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                             <label for="jsValidationAddress"><b>The file was also uploaded to an external web space</b></label>
                             <input name="pubblic" id="jsValidationapubblic" type="text" class="form-control" placeholder="Enter the external address">
                             <p>Indicates in the field the complete address of the web space where the file is already published, for example: http://www.miosito.it/miofile.ext COMPLETE WITH http:// Or https://</p>
@@ -83,15 +83,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-12 mb-3">
                             <p><b>By archiving, you declare that you understand that Encrypter does not provide for the security of the file itself but for checking its unaltered status. This means that we cannot guarantee that the file will not be counterfeited by third parties, but we can guarantee constant control so that you can be promptly notified of a possible violation. This is true even if the file you want to monitor is also published on another web space.</b></p>
                         </div>
                     </div>

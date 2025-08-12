@@ -27,7 +27,7 @@
 							</div>
 							<?php  }?>
 							<div class="box-body">
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMin" class="form-label col-3">Logo</label>
 									<div class="col-9">
 									   <input id="jsValidationFirstName" type="file" class="form-control" placeholder="Logo" <?php if($userinfo->avatar==''){?>required <?php }?>  name="avatar">
@@ -37,7 +37,7 @@
 									</div>
 								</div>
 								<?php // if($userinfo->avatar!=''){?>
-								<div class="form-group row">
+								<div class="mb-3 row">
 								<label for="jsValidationLengthMax" class="form-label col-3"> Change Picture</label>
 									
 									<label class="form-radio-custom">
@@ -51,7 +51,7 @@
 									</label>
 								</div>
 								<?php //}?></span>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMax" class="form-label col-3">Name</label>
 									<div class="col-9">
 									    <input id="jsValidationLastName" type="text" class="form-control" name="nominativo" placeholder="Name" required value="<?=$userinfo->nominativo?>">
@@ -59,7 +59,7 @@
 										<span class="invalid-feedback">Field is required.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthRange" class="form-label col-3">Email</label>
 									<div class="col-9">
 									    <input id="jsValidationEmail" type="email" class="form-control" placeholder="Email" name="email" required value="<?=$userinfo->email?>">
@@ -67,7 +67,7 @@
 										<span class="invalid-feedback">Field is required and must be email.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthRange" class="form-label col-3">Type</label>
 									<div class="col-9">
 									    <input id="jsValidationEmail" type="text" class="form-control" placeholder="Email" name="tipologiaUtente" required value="<?=$userinfo->tipologiaUtente?>">
@@ -75,35 +75,35 @@
 										<span class="invalid-feedback">Field is required and must be email.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Permission</label>
 									<div class="col-9">
 									    <input id="jsValidationAddress" type="text" class="form-control" placeholder="Phone" name="autorizzazioni" value="<?=$userinfo->autorizzazioni?>">
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Contacts</label>
 									<div class="col-9">
 									    <input id="jsValidationAddress" type="text" class="form-control" placeholder="Phone" name="contatti" value="<?=$userinfo->contatti ?>">
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Department</label>
 									<div class="col-9">
 									    <input id="jsValidationAddress" type="text" class="form-control" placeholder="Phone" name="dipartimento" value="<?=$userinfo->dipartimento?>">
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMax" class="form-label col-3">wallet</label>
 									<div class="col-9">
 									<input id="jsValidationCity" type="text" class="form-control" placeholder="wallet" name="wallet" value="<?=$userinfo->userwallet ?>"> 
 										<span class="invalid-feedback">This value should be lower than or equal to 10.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 								<label for="jsValidationLengthMax" class="form-label col-3"> Change Password</label>
 									
 									<label class="form-radio-custom">
@@ -116,7 +116,7 @@
 										<span class="form-label">Yes</span>
 									</label>
 								</div>
-								<div class="form-group row" id="changpassword" style="display:none">
+								<div class="mb-3 row" id="changpassword" style="display:none">
 									<label for="jsValidationMax" class="form-label col-3" style="float:left">New Password</label>
 									<div class="col-9" style="float:right"> 
 									<input id="jsValidationCity" type="password" class="form-control" placeholder="Password" name="password" value="" style="float:right"> 

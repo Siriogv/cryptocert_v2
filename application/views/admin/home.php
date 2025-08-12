@@ -88,7 +88,7 @@
                             <div class="card-body">
                                 <div class="buy-sell-widget">
                                     <form method="post" name="myform" class="currency_validate">
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label class="mr-sm-2">Currency</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -102,7 +102,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label class="mr-sm-2">Payment Method</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -116,7 +116,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+                                        <div class="mb-3">
                                             <label class="mr-sm-2">Enter your amount</label>
                                             <div class="input-group">
                                                 <input type="text" name="currency_amount" class="form-control"
@@ -429,7 +429,7 @@
                         <form method="post" name="myform" class="contact_validate">
                             <div class="row">
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label for="contactName">
                                             Full name
                                         </label>
@@ -438,7 +438,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label for="contactEmail">
                                             Email
                                         </label>
@@ -450,7 +450,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <textarea class="form-control p-3" name="message" rows="5"
                                             placeholder="Tell us what we can help you with!"></textarea>
                                     </div>

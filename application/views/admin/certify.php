@@ -28,13 +28,13 @@
 								<h3>Your Transaction is proceeding please wait and fill form below </h3>
                             </div>
 								<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationnominativo"><b>Enter Block Chain Link</b></label>
 										<input id="jsValidationnominativo" name="blockchain" type="text" class="form-control" placeholder="Blockchain link" required>
 										<span class="valid-feedback">Fine!</span>
 										<span class="invalid-feedback">Field is required.</span>
 									</div>
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationnominativo"><b>Enter Transaction Hash</b></label>
 										<input id="jsValidationnominativo" name="tranhash" type="text" class="form-control" placeholder="Transaction" required>
 										<span class="valid-feedback">Fine!</span>

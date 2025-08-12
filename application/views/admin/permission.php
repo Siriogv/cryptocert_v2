@@ -17,7 +17,7 @@
 							
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationnominativo"><b>Enter permission</b></label>
 										<input id="jsValidationnominativo" name="permission" type="text" class="form-control" placeholder="Permission" required>
 										<span class="valid-feedback">Fine!</span>

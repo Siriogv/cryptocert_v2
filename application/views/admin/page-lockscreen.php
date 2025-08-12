@@ -40,7 +40,7 @@
 						</div>
 						<?php $attributes = array("name" => "unlock","id"=> "unlock");
                                    echo form_open_multipart("signin/login", $attributes);?>
-						<div class="form-group">
+						<div class="mb-3">
 						    <input type="hidden" class="form-control" placeholder="Enter your password" value="<?=$user?>" name="email">
 							<input type="password" class="form-control" placeholder="Enter your password" name="password">
 						</div>
