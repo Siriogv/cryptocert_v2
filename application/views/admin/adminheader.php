@@ -121,7 +121,7 @@ php
 
 
 
-		<aside class="sidebar">
+                <aside id="sidebar" class="sidebar">
 
 
 
@@ -221,7 +221,7 @@ php
 
 
 
-					<button id="js-toggle-sidebar" class="header-nav-item">
+                                        <button id="sidebar-toggle" class="header-nav-item">
 
 
 
