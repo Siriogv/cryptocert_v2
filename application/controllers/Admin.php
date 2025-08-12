@@ -177,12 +177,11 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
     $inreg['esecutore'] = $encrypted;
 
     $this->db->insert('registro',$inreg);
-    $open="log.html";
-    $log=fopen($open, "a+");
-    fputs($log,"<h5>".$this->input->post('scadenza')." | ".$_SESSION['logged_incheck']['name']." | has uploaded the file: : $file <br>");
-    fclose($log);
 
-    //log_message('info', "<h5>il $data $_SESSION[who_utente] ha inserito il file: $file <br>");
+    // Use CodeIgniter's logging instead of manually writing to log.html
+    $log_message = $this->input->post('scadenza') . ' | ' .
+        $_SESSION['logged_incheck']['name'] . ' | has uploaded the file: ' . $file;
+    log_message('info', $log_message);
     redirect('admin/filesearch');
 }
 
@@ -677,20 +676,22 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
 		
 	}
 
-	public function log(){
-		$open="log.html";
-		$log=fopen($open, "a+");
-		$json = file_get_contents('log.html');
-	  // $obj = json_decode($json);
-	  $data['content'] = $json;
-	   //print '<pre>' . print_r($json) . '</pre>';die;
-	   $data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
-	   $this->load->view('admin/adminheader',$data);
-	   $this->load->view('admin/logcontent',$data);
-	   $this->load->view('admin/adminfooter',$data);
-		
+        public function log(){
+                // Read the latest CodeIgniter log file
+                $log_file = APPPATH . 'logs/log-' . date('Y-m-d') . '.php';
+                $content = '';
+                if (file_exists($log_file)) {
+                        $content = file_get_contents($log_file);
+                }
+                $data['content'] = $content;
+                $data['title'] = 'Log';
+                $data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
+                $this->load->view('admin/adminheader',$data);
+                $this->load->view('admin/logcontent',$data);
+                $this->load->view('admin/adminfooter',$data);
 
-	}
+
+        }
 
 	public function messagehash(){
 	   $message =  $this->input->post('messaggio_originale');
@@ -740,29 +741,37 @@ function logout()
 }
 
 public function deleteLog() {
-    // Controlla i permessi dell'utente se necessario
-    if (!$this->session->userdata('is_logged_in')) {
-        redirect('login'); // Reindirizza al login se l'utente non è autenticato
+    // Ensure user is logged in
+    if (empty($_SESSION['logged_incheck'])) {
+        redirect('signin');
     }
 
-    // Percorso del file di log
-    $log_file_path = APPPATH . 'logs/logfile.log'; // Modifica il percorso se necessario
+    // Allow only administrators to remove logs
+    if ($_SESSION['logged_incheck']['tipologiaUtente'] !== 'admin') {
+        show_error('Unauthorized', 403);
+    }
 
-    // Verifica se il file esiste
-    if (file_exists($log_file_path)) {
-        // Elimina il file di log
-        if (unlink($log_file_path)) {
-            $this->session->set_flashdata('success', 'Log eliminato con successo.');
-        } else {
-            $this->session->set_flashdata('error', 'Errore durante l\'eliminazione del log.');
+    $log_files = glob(APPPATH . 'logs/log-*');
+    $deleted = true;
+    if (!empty($log_files)) {
+        foreach ($log_files as $file) {
+            if (!unlink($file)) {
+                $deleted = false;
+            }
         }
     } else {
-        $this->session->set_flashdata('error', 'Il file di log non esiste.');
+        $deleted = false;
     }
 
-    // Reindirizza alla pagina precedente o a un'altra pagina
-    redirect('admin/log');
+    if ($deleted) {
+        $this->session->set_flashdata('success', 'Log eliminato con successo.');
+    } else {
+        $this->session->set_flashdata('error', 'Errore durante l\'eliminazione del log.');
     }
- } // Ensure this is the closing brace of the Admin cla
+
+    redirect('admin/log');
+}
+
+} // Ensure this is the closing brace of the Admin cla
 	/* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

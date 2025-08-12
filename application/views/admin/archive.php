@@ -152,16 +152,15 @@ class Admin extends CI_Controller {
 			$inreg['data_eliminazione'] = '';
 			$inreg['esecutore'] = $encrypted;
 			
-			$this->db->insert('registro',$inreg);
-			$open="log.html";
-			$log=fopen($open, "a+");
-		    fputs($log,"<h5>".$this->input->post('scadenza')." | ".$_SESSION['logged_incheck']['name']." | has uploaded the file: : $file <br>");
-			fclose($log);	
-			
-			//log_message('info', "<h5>il $data $_SESSION[who_utente] ha inserito il file: $file <br>");
-			redirect('admin/filesearch');
-			
-		}
+                        $this->db->insert('registro',$inreg);
+
+                        // Log using CodeIgniter logger instead of manual file writes
+                        $log_message = $this->input->post('scadenza') . ' | ' .
+                            $_SESSION['logged_incheck']['name'] . ' | has uploaded the file: ' . $file;
+                        log_message('info', $log_message);
+                        redirect('admin/filesearch');
+
+                }
 			$L=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 			$n1=rand(0,100);
 			$n2=rand(0,1000);
@@ -654,19 +653,21 @@ class Admin extends CI_Controller {
 	}
 
 	public function log(){
-		$open="log.html";
-		$log=fopen($open, "a+");
-		$json = file_get_contents('log.html');
-	  // $obj = json_decode($json);
-	  $data['content'] = $json;
-	   //print '<pre>' . print_r($json) . '</pre>';die;
-	   $data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
-	   $this->load->view('admin/adminheader',$data);
-	   $this->load->view('admin/logcontent',$data);
-	   $this->load->view('admin/adminfooter',$data);
-		
+                // Read the latest log file from application/logs
+                $log_file = APPPATH . 'logs/log-' . date('Y-m-d') . '.php';
+                $content = '';
+                if (file_exists($log_file)) {
+                        $content = file_get_contents($log_file);
+                }
+                $data['content'] = $content;
+                $data['title'] = 'Log';
+                $data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
+                $this->load->view('admin/adminheader',$data);
+                $this->load->view('admin/logcontent',$data);
+                $this->load->view('admin/adminfooter',$data);
 
-	}
+
+        }
 
 	public function messagehash(){
 	   $message =  $this->input->post('messaggio_originale');
