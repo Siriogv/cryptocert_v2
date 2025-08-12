@@ -118,7 +118,7 @@ class Signin extends CI_Controller {
                 foreach ($getexpiry as $filedel) {
                     $this->db->delete('contenuto_certificato', ['id' => $filedel->id]);
                     $this->db->delete('archivio', ['original' => $filedel->path]);
-                    unlink(base_url() . $filedel->path);
+                    unlink(FCPATH . $filedel->path);
                 }
 
                 redirect('admin');
@@ -321,7 +321,7 @@ class Signin extends CI_Controller {
 			 foreach($getexpiry as $filedel){//print_r($filedel);
 				$this->db->delete('contenuto_certificato', array('id' => $filedel->id));
 				$this->db->delete('archivio', array('original' => $filedel->path));
-				unlink(base_url().$filedel->path);
+                                unlink(FCPATH . $filedel->path);
 				//$sql ="delete from contenuto_certificato where id='".$filedel[id]."'";
 			 }
 			 redirect('admin');
