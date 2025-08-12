@@ -86,7 +86,7 @@ class Install extends CI_Controller {
 
 	}
 
-		public function unlock(){ //print_r($_SESSION);die;
+                public function unlock(){
 
          	$this->load->model('model_object');
             $data['user'] = $this->model_object->getAllFromWhere('utenti',"`login_status`= 1 and `login_time`<=0");

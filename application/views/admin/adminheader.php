@@ -179,9 +179,9 @@ php
 					<li><a class="sidebar-list-item" href="<?php echo base_url('index.php/')?>admin/message"><i class="fe fe-message-square"></i> <span>Message</span></a></li>
 					<li><a class="sidebar-list-item" href="<?php echo base_url('index.php/')?>admin/profile"><i class="fe fe-user"></i> <span>Profile</span></a></li>
 
-					<?php //echo $_SESSION['logged_incheck']['dipartimento '];?>
+                                        <?php $session = $this->session->userdata('logged_incheck'); //echo $session['dipartimento'];?>
 
-					 <?php if(($_SESSION['logged_incheck']['tipologiaUtente'])=="admin" || $_SESSION['logged_incheck']['permission']=="god" || $_SESSION['logged_incheck']['id']==1){?> 
+                                         <?php if(($session['tipologiaUtente'])=='admin' || $session['permission']=='god' || $session['id']==1){?>
 						<li class="sidebar-list-item"><i class="fe fe-settings"></i> <span>App Setting</span> <i class="fas fa-chevron-down pull-right"></i></li>
 					<li>
 						<ul>

@@ -77,7 +77,7 @@
 					</div>
 				</div>-->
 				<div class="box">
-                <?php if(($_SESSION['logged_incheck']['dipartimento '])=="Amministrazione"){?>
+                <?php $session = $this->session->userdata('logged_incheck'); if($session['dipartimento']=='Amministrazione'){?>
 				
 					<div class="box-header">
 						<h3 >Users</h3>
