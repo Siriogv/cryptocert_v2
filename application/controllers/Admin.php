@@ -629,15 +629,25 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
 	
 
 
-	public function filesearch(){
-		$dir ="cripted/archivio";
-		$a = scandir($dir);
-       // Sort in descending order
-		$b = scandir($dir,1);//print_r($b);die;
-		$data['files'] = $b;
-		$data['title'] = "Search File";
-		$data['department'] = $this->model_object->getAll('dipartimenti');
-		$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
+        /**
+         * Display a list of archived files.
+         *
+         * Uses an absolute path based on FCPATH. If the archive directory is
+         * missing, the files list is empty and an error message is set.
+         */
+        public function filesearch(){
+                $dir = FCPATH.'cripted/archivio';
+
+                if (is_dir($dir)) {
+                        // Sort in descending order
+                        $data['files'] = scandir($dir,1); //print_r($data['files']);die;
+                } else {
+                        $data['files'] = [];
+                        $data['error'] = 'Archive directory not found.';
+                }
+                $data['title'] = "Search File";
+                $data['department'] = $this->model_object->getAll('dipartimenti');
+                $data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
 		
 		if($_SESSION['logged_incheck']['tipologiaUtente']=='admin'){
 			$data['certificat'] = $this->model_object->getAll('contenuto_certificato');	
