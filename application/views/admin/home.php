@@ -518,7 +518,7 @@
 
 
     <script src="<?=base_url();?>assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?=base_url();?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="<?=base_url();?>assets/vendor/waves/waves.min.js"></script>
 
     <script src="<?=base_url();?>assets/vendor/owlcarousel/js/owl.carousel.min.js"></script>
