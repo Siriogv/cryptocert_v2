@@ -201,7 +201,7 @@ class Admin extends CI_Controller {
 		$this->db->delete('archivio', array('original' => $delfiles[0]->path));
 		$this->db->delete('registro', array('path' => $delfiles[0]->path));
 		$this->db->delete('contenuto_certificato', array('id' => $id));
-		unlink(base_url().$delfiles[0]->path);
+                unlink(FCPATH . $delfiles[0]->path);
 	    redirect('/admin/filesearch', 'refresh');
 
 	}
