@@ -278,7 +278,7 @@ php
 
 
 
-								<img src="images/avatar-3.jpg" alt="">
+								<img src="<?= base_url('images/avatar-3.jpg') ?>" alt="">
 
 
 
@@ -338,7 +338,7 @@ php
 
 
 
-								<img src="images/avatar-3.jpg" alt="">
+								<img src="<?= base_url('images/avatar-3.jpg') ?>" alt="">
 
 
 

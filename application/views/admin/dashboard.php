@@ -145,7 +145,7 @@
 					<div class="col-lg-6">
 						<div class="card card-reverse">
 							<div class="card-image transition-left">
-								<img src="images/stock-2.jpg" alt="">
+								<img src="<?= base_url('images/stock-2.jpg') ?>" alt="">
 							</div>
 							<div class="card-body">
 								<h3>Lorem ipsum dolor.</h3>
@@ -153,7 +153,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-1.jpg" alt="">
+											<img src="<?= base_url('images/avatar-1.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
@@ -172,7 +172,7 @@
 					<div class="col-lg-6">
 						<div class="card">
 							<div class="card-image transition-right">
-								<img src="images/stock-4.jpg" alt="">
+								<img src="<?= base_url('images/stock-4.jpg') ?>" alt="">
 							</div>
 							<div class="card-body">
 								<h3>Lorem ipsum dolor.</h3>
@@ -180,7 +180,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-1.jpg" alt="">
+											<img src="<?= base_url('images/avatar-1.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
@@ -354,7 +354,7 @@
 									</div>
 									<div class="message">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-3.jpg" alt="">
+											<img src="<?= base_url('images/avatar-3.jpg') ?>" alt="">
 										</div>
 										<div class="message-content">
 											<div class="message-bubble">
@@ -412,7 +412,7 @@
 								</div>
 								<div class="event-column event-column-success">
 									<div class="avatar avatar-xs">
-										<img src="images/avatar-2.jpg" alt="">
+										<img src="<?= base_url('images/avatar-2.jpg') ?>" alt="">
 									</div>
 									<div class="event-content">
 										<small class="text-secondary"><i class="fas fa-code-branch"></i> awesome-branch</small>
@@ -479,7 +479,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-2.jpg" alt="">
+											<img src="<?= base_url('images/avatar-2.jpg') ?>" alt="">
 											<i class="fas fa-circle text-success"></i>
 										</div>
 									</div>
@@ -494,7 +494,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-3.jpg" alt="">
+											<img src="<?= base_url('images/avatar-3.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
@@ -508,7 +508,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-4.jpg" alt="">
+											<img src="<?= base_url('images/avatar-4.jpg') ?>" alt="">
 											<i class="fas fa-circle text-success"></i>
 										</div>
 									</div>
@@ -523,7 +523,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-6.jpg" alt="">
+											<img src="<?= base_url('images/avatar-6.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
@@ -537,7 +537,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-7.jpg" alt="">
+											<img src="<?= base_url('images/avatar-7.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
@@ -551,7 +551,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-8.jpg" alt="">
+											<img src="<?= base_url('images/avatar-8.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
@@ -565,7 +565,7 @@
 								<div class="user-panel">
 									<div class="user-panel-image">
 										<div class="avatar avatar-sm">
-											<img src="images/avatar-9.jpg" alt="">
+											<img src="<?= base_url('images/avatar-9.jpg') ?>" alt="">
 										</div>
 									</div>
 									<div class="user-panel-info">
