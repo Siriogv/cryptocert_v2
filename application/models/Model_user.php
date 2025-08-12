@@ -51,14 +51,31 @@ class model_user extends CI_Model
     //activate user account
     function checkuser($table,$user,$pass)
     {
-        $data = array('status' => 1);
         $this->db->select('*');
-	    $this->db->from($table);	
-        $this->db->where('email',$user);
-        $this->db->where('stato',1);	
-		$this->db->where('password',md5($pass));
+        $this->db->from($table);
+        $this->db->where('email', $user);
+        $this->db->where('stato', 1);
+
         $query = $this->db->get();
-        return $query->result();
+        $row   = $query->row();
+
+        if (!$row) {
+            return false;
+        }
+
+        // Verify password using password_hash/password_verify.
+        if (password_verify($pass, $row->password) || $row->password === md5($pass)) {
+            // Rehash the password if it was stored using md5 or an outdated hash.
+            if ($row->password === md5($pass) || password_needs_rehash($row->password, PASSWORD_DEFAULT)) {
+                $newHash = password_hash($pass, PASSWORD_DEFAULT);
+                $this->db->where('id', $row->id);
+                $this->db->update($table, ['password' => $newHash]);
+            }
+
+            return [$row];
+        }
+
+        return false;
     }
 
     function getsum($table,$sum,$userid,$mode){

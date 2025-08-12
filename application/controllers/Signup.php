@@ -61,7 +61,7 @@ class Signup extends CI_Controller {
 			$this->load->view('page-signup',$data);
 			$this->load->view('footer');*/
 	public function signup(){
-    $password = md5($this->input->post('password'));
+    $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
     $avatardefault = "avatar/default.jpg";
     $ins['nominativo'] = $this->input->post('name');
     $ins['email'] = $this->input->post('email');
@@ -101,9 +101,8 @@ class Signup extends CI_Controller {
     $this->load->view('page-signup', $data);
     $this->load->view('footer');
 }
-	
-	}
-	public function login()
+
+        public function login()
  	{
  	//echo md5("12345");
 		$this->form_validation->set_rules('email', 'Username', 'trim|required|xss_clean');

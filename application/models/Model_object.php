@@ -168,23 +168,22 @@ class model_object extends CI_Model
   function change_password()
   {
     $value=$this->input->post('old_password');
-	$id=$this->input->post('id');
-	
-	$this->db->where('id',$id);
-	$this->db->where('password',md5($value));
-	$query=$this->db->get('admin');
-	//check the password is match or not
-   if($query->num_rows()>0)
-    {
-	 $ins['password']=md5($this->input->post('new_password'));
-	 $this->db->where('id', $id);	
-	 $this->db->update('admin',$ins);	
-	 return $this->session->set_userdata('msg','Update Successfully');
-    }
-   else
-    {
-	  return $this->session->set_userdata('msg','You have Enter wrong password');
-	}
+        $id=$this->input->post('id');
+
+        $this->db->where('id',$id);
+        $query=$this->db->get('admin');
+
+        if($query->num_rows()>0){
+            $row = $query->row();
+            if(password_verify($value, $row->password)){
+                $ins['password'] = password_hash($this->input->post('new_password'), PASSWORD_DEFAULT);
+                $this->db->where('id', $id);
+                $this->db->update('admin',$ins);
+                return $this->session->set_userdata('msg','Update Successfully');
+            }
+        }
+
+        return $this->session->set_userdata('msg','You have Enter wrong password');
    
   }
   

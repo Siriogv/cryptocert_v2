@@ -48,7 +48,7 @@ class Signin extends CI_Controller {
 
             if (mail($to, $subject, $message, $headers)) {
                 $this->db->where('email', $this->input->post('email'));
-                $this->db->update('utenti', ['password' => md5($unicode)]);
+                $this->db->update('utenti', ['password' => password_hash($unicode, PASSWORD_DEFAULT)]);
                 $data['messagesuccess'] = "Password sent to email, please check.";
             }
         }

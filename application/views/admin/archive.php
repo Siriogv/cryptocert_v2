@@ -209,7 +209,7 @@ class Admin extends CI_Controller {
 	public function enableoperator()
 	{       
 		if($_POST){
-			$password=md5($this->input->post('password'));
+                        $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 			//$stato=1;
 			$avatardefault = "avatar/default.jpg";
 			$ins['nominativo'] = $this->input->post('nominativo')." ".$this->input->post('surname');
@@ -400,7 +400,7 @@ class Admin extends CI_Controller {
 				$ins['nickname'] = $this->input->post('nickname'); 
 				$ins['userwallet '] = $this->input->post('wallet');
 				if($this->input->post('changp')==1){
-					$ins['password'] = md5($this->input->post('password'));
+                                        $ins['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 				}
 			    $data['messagesuccess'] = "Profile edited successfully";
 				$this->db->where('id',$usrid);
@@ -425,7 +425,7 @@ class Admin extends CI_Controller {
 			if($this->input->post('newpassword')!=$this->input->post('conpassword')){
                 $data['message']	="Password and confirm password are not same";
 			}else{
-                $ins['password'] = md5($this->input->post('newpassword'));//echo "<pre>";print_r($ins);die;
+                $ins['password'] = password_hash($this->input->post('newpassword'), PASSWORD_DEFAULT);//echo "<pre>";print_r($ins);die;
 				$this->db->where('id',$_SESSION['logged_incheck']['id']);
 				$this->db->update('utenti',$ins); 
 				//$department = $this->input->post('dipartimento');
