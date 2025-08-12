@@ -258,43 +258,63 @@ class Admin extends CI_Controller {
 		//$this->load->view('footer');
 	}
 
-	public function editoperatorval(){
+        public function editoperatorval(){
+                    $usrid = $this->input->post('userid');
 
-		   // echo "<pre>";print_r($_POST);print_r($_FILES);die;
-			$usrid = $this->input->post('userid');
-			 //print_r($session->get('logged_incheck'));
-			 $config['upload_path']   = './avatar/'; 
-			 $config['allowed_types'] = 'gif|jpg|png'; 
-			 if($this->input->post('logochang')==1){
-				 $this->load->library('upload', $config);
-				echo $file_name = $_FILES["avatar"]["name"];
-				 $this->upload->do_upload('logo');
-				 $data = array('upload_data' => $this->upload->data()); 
-				 if($file_name!=''){
-					 $file_name = $_FILES["avatar"]["name"];
-					 $this->upload->do_upload('avatar');
-					 $data = array('upload_data' => $this->upload->data()); 
-					 $ins['avatar'] ='avatar/'.$file_name; 
-				 }
-			 }
-		 
-			 $ins['nominativo'] = $this->input->post('nominativo')." ".$this->input->post('surname');
-			 $ins['email'] = $this->input->post('email');
-			 $ins['tipologiaUtente '] = $this->input->post('tipologiaUtente');
-			 $ins['autorizzazioni '] = $this->input->post('autorizzazioni');
-			 $ins['contatti'] = $this->input->post('contatti');
-			 $ins['dipartimento'] = $this->input->post('dipartimento'); 
-			 $ins['stato'] = $this->input->post('status'); 
-			 $ins['nickname'] = $this->input->post('nickname'); 
-			 $ins['userwallet '] = $this->input->post('wallet');
-			 //echo "<pre>";print_r($ins);die;
-			 $data['messagesuccess'] = "Profile edited successfully";
-			 $this->db->where('id',$usrid);
-			 $this->db->update('utenti',$ins); 	
-			 redirect('admin/listoperator');
-	  
-	   
-	}
+                    $config['upload_path']   = './avatar/';
+                    $config['allowed_types'] = 'gif|jpg|png';
+                    $error = '';
+
+                    if($this->input->post('logochang')==1){
+                            $this->load->library('upload', $config);
+
+                            if($this->upload->do_upload('avatar')){
+                                    $uploadData = $this->upload->data();
+                                    $file_name = $this->security->sanitize_filename($uploadData['file_name']);
+                                    $ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                                    $allowed = array('gif','jpg','png');
+
+                                    if(in_array($ext, $allowed)){
+                                            $ins['avatar'] = 'avatar/'.$file_name;
+                                    }else{
+                                            $error = 'File type not allowed';
+                                    }
+                            }else{
+                                    $error = $this->upload->display_errors();
+                            }
+                    }
+
+                    $ins['nominativo'] = $this->input->post('nominativo')." ".$this->input->post('surname');
+                    $ins['email'] = $this->input->post('email');
+                    $ins['tipologiaUtente '] = $this->input->post('tipologiaUtente');
+                    $ins['autorizzazioni '] = $this->input->post('autorizzazioni');
+                    $ins['contatti'] = $this->input->post('contatti');
+                    $ins['dipartimento'] = $this->input->post('dipartimento');
+                    $ins['stato'] = $this->input->post('status');
+                    $ins['nickname'] = $this->input->post('nickname');
+                    $ins['userwallet '] = $this->input->post('wallet');
+
+                    if($error){
+                            $data['message'] = $error;
+                            $data['title'] = "Edit Operator";
+                            $data['department'] = $this->model_object->getAll('dipartimenti');
+                            $data['usertype'] = $this->model_object->getAll('tipologia_utenti');
+                            $data['permission'] = $this->model_object->getAll('userpermission');
+                            $data['userinfo'] = $this->model_object->getElementById('utenti',$usrid);
+                            $data['offcdata'] = $this->model_object->getElementById('dati_ufficio',1);
+                            $this->load->view('admin/adminheader',$data);
+                            $this->load->view('admin/editoperator',$data);
+                            $this->load->view('admin/adminfooter',$data);
+                            return;
+                    }
+
+                    $data['messagesuccess'] = "Profile edited successfully";
+                    $this->db->where('id',$usrid);
+                    $this->db->update('utenti',$ins);
+                    redirect('admin/listoperator');
+
+
+        }
 
 	public function editoperator($id)
 	{     
