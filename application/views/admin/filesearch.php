@@ -14,7 +14,7 @@ $this->load->model('model_object');
             </nav>
         </div>
 
-        <?php if (count($files) > 0) { ?>
+        <?php if (is_array($certificat) && count($certificat) > 0) { ?>
         <div class="row table-responsive">
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" class="form-control mb-3">
             <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -99,6 +99,8 @@ $this->load->model('model_object');
                 } ?>
             </table>
         </div>
+        <?php } else { ?>
+        <div class="alert alert-info">No records found.</div>
         <?php } ?>
     </div>
 </main>
