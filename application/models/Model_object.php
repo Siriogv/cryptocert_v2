@@ -132,13 +132,9 @@ class model_object extends CI_Model
    }
   function exist($field,$table,$value)
    {
-     $this->db->get($table);
-	 $query=$this->db->where($field,$value);
-	 if($query->num_rows()>0)
-	 return true;
-	 else
-	 return false;
-	 
+     $query = $this->db->get_where($table, [$field => $value]);
+     return $query->num_rows() > 0;
+
    }
    
    function getElementByField($field,$table,$value)
