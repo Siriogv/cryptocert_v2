@@ -24,7 +24,7 @@
 
 						<div class="box-body">
 
-							<div class="form-group">
+							<div class="mb-3">
 
 								<label for="loginEmail">Email</label>
 
@@ -34,7 +34,7 @@
 
 							</div>
 
-							<div class="form-group">
+							<div class="mb-3">
 
 								<label for="loginPassword">Password</label>
 
@@ -44,11 +44,11 @@
 
 							</div>
 							<?php if($offcdata->enable_recapture==1){ ?>
-                            <div class="form-group">
+                            <div class="mb-3">
                                      <div class="g-recaptcha" data-sitekey="<?php echo $offcdata->site_key?>"></div> 
                                      </div>
 							<?php }?>		 
-							<div class="form-group">
+							<div class="mb-3">
 
 								<label class="form-checkbox-custom">
 
@@ -60,7 +60,7 @@
 
 							</div>
 
-							<div class="form-group">
+							<div class="mb-3">
 
 								<div class="btn-group btn-group-stretch">
 

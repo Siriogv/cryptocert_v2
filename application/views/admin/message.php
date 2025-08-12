@@ -17,7 +17,7 @@
 						
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationFirstName"><b>Original message </b></label>
 										<textarea  name="messaggio_originale" id="messaggio_originale" class="form-control"  required></textarea>
 										<span class="valid-feedback">Fine!</span>
@@ -33,7 +33,7 @@
 							
 								<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationFirstName"><b>Message Hash </b></label>
 										<textarea  name="messaggio_originale" id="messaggio_originalehash" class="form-control"  required></textarea>
 										<span class="valid-feedback">Fine!</span>
@@ -55,7 +55,7 @@
 							</div>
 							<div class="box-body">
 							<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationFirstName"><b>Message hash </b></label>
 										<textarea  name="messaggio_cript" id="messaggio_cript" class="form-control"required></textarea>
 										<span class="valid-feedback">Fine!</span>
@@ -63,7 +63,7 @@
 									</div>
 									</div>
 									<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationLastName"><b>Original message</b></label>
 										<textarea  name="messaggio_originale" id="messaggio_originaleval" class="form-control" placeholder="Last name" required></textarea>
 										<span class="valid-feedback">Fine!</span>

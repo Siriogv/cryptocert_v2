@@ -62,23 +62,23 @@
                             </div>
                             <div class="card-body">
                                 <form method="post" name="myform" class="signin_validate" action="otp-1.html">
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Email</label>
                                         <input type="email" class="form-control" placeholder="hello@example.com" name="email">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="mb-3">
                                         <label>Password</label>
                                         <input type="password" class="form-control" placeholder="Password" name="password">
                                     </div>
                                     <div class="form-row d-flex justify-content-between mt-4 mb-2">
-                                        <div class="form-group mb-0">
+                                        <div class="mb-3 mb-0">
                                             <label class="toggle">
                                                 <input class="toggle-checkbox" type="checkbox">
                                                 <div class="toggle-switch"></div>
                                                 <span class="toggle-label">Remember me</span>
                                             </label>
                                         </div>
-                                        <div class="form-group mb-0">
+                                        <div class="mb-3 mb-0">
                                             <a href="<?php echo base_url('index.php') ?>/signin/forgetpassword">Forgot Password?</a>
                                         </div>
                                     </div>

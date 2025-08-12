@@ -10,28 +10,28 @@
 						</div>
 						<?php $attributes = array("name" => "usersignup","id"=> "usersignup","class"=>"box-body needs-validation");
 						echo form_open_multipart("install/usercreate", $attributes);?>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="regFirstName">Admin User Name</label>
 								<input id="regFirstName" type="text" required class="form-control" placeholder="User" name="username">
 								<span class="invalid-feedback">Field is required.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="regLastName">Admin Email</label>
 								<input id="regLastName" type="text" required class="form-control" placeholder="Email" name="email">
 								<span class="invalid-feedback">Field is required.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="regEmail">Password</label>
 								<input id="regEmail" type="password" required class="form-control" placeholder="Password" name="password">
 								<span class="invalid-feedback">Field is required.</span>
 							</div>
-							<div class="form-group">
+							<div class="mb-3">
 								<label for="signupPassword">Confirm Password</label>
 								<input id="signupPassword" type="password" required class="form-control" placeholder="Confirm Password" name="confpassword">
 								<span class="invalid-feedback">Min length is 6 symbols.</span>
 							</div>
 
-							<div class="form-group">
+							<div class="mb-3">
 								<button class="btn btn-block btn-primary">Create User</button>
 							</div>
 							<a class="btn btn-link btn-block" href="page-signin.html"><i class="fas fa-arrow-circle-left"></i> Go Back</a>

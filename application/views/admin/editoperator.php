@@ -29,7 +29,7 @@
 							</div>
 							<?php  }?>
 							<div class="box-body">
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMin" class="form-label col-3">Logo</label>
 									<div class="col-9">
 									   <input id="jsValidationFirstName" type="file" class="form-control" placeholder="Logo" <?php if($userinfo->avatar==''){?>required <?php }?>  name="avatar">
@@ -39,7 +39,7 @@
 									</div>
 								</div>
 								<?php if($userinfo->avatar!=''){?>
-								<div class="form-group row">
+								<div class="mb-3 row">
 								<label for="jsValidationLengthMax" class="form-label col-3"> Change Picture</label>
 									
 									<label class="form-radio-custom">
@@ -53,7 +53,7 @@
 									</label>
 								</div>
 								<?php }?></span>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMax" class="form-label col-3">Name</label>
 									<div class="col-9">
 									    <input id="jsValidationLastName" type="text" class="form-control" name="nominativo" placeholder="Name" required value="<?=$name[0]?>">
@@ -61,7 +61,7 @@
 										<span class="invalid-feedback">Field is required.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMax" class="form-label col-3">SurName</label>
 									<div class="col-9">
 									    <input  type="text" class="form-control" name="surname" placeholder="SurName" value="<?=$name[1]?>">
@@ -69,7 +69,7 @@
 										<span class="invalid-feedback">Field is required.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthRange" class="form-label col-3">Email</label>
 									<div class="col-9">
 									    <input id="jsValidationEmail" type="email" class="form-control" placeholder="Email" name="email" required value="<?=$userinfo->email?>">
@@ -77,7 +77,7 @@
 										<span class="invalid-feedback">Field is required and must be email.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthRange" class="form-label col-3">Type</label>
 									<div class="col-9">
 									<select class="form-control" name="tipologiaUtente">
@@ -91,7 +91,7 @@
 										<span class="invalid-feedback">Field is required and must be email.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Permission</label>
 									<div class="col-9">
 									<select class="form-control" name="autorizzazioni">
@@ -104,14 +104,14 @@
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Contacts</label>
 									<div class="col-9">
 									    <input id="jsValidationAddress" type="text" class="form-control" placeholder="Phone" name="contatti" value="<?=$userinfo->contatti ?>">
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMin" class="form-label col-3">Department</label>
 									<div class="col-9">
 									<select class="form-control" name="dipartimento">
@@ -124,7 +124,7 @@
 										<span class="valid-feedback">Fine!</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationMax" class="form-label col-3">wallet</label>
 									<div class="col-9">
 									<input id="jsValidationCity" type="text" class="form-control" placeholder="wallet" name="wallet" value="<?=$userinfo->userwallet ?>"> 
@@ -132,7 +132,7 @@
 									</div>
 								</div>
 								<input id="jsValidationCity" type="hidden" class="form-control"  name="userid" value="<?=$userinfo->id?>"> 
-								<div class="form-group row">
+								<div class="mb-3 row">
 								<label for="jsValidationLengthMax" class="form-label col-3"> Status</label>
 									
                                                                         <label class="form-radio-custom">

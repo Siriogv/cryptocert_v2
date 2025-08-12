@@ -27,13 +27,13 @@
 							</div>
 							<?php  }?>
 							<div class="box-body">
-								<div class="form-group row">
+								<div class="mb-3 row">
 									
 									<div class="col-9">
 							
 							<span>
 							
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthMax" class="form-label col-3">New Password</label>
 									<div class="col-9">
 									    <input id="jsValidationLastName" type="password" class="form-control" name="newpassword" id="password" placeholder="New Password" required>
@@ -41,7 +41,7 @@
 										<span class="invalid-feedback">Field is required.</span>
 									</div>
 								</div>
-								<div class="form-group row">
+								<div class="mb-3 row">
 									<label for="jsValidationLengthRange" class="form-label col-3">Confirm Password</label>
 									<div class="col-9">
 									    <input id="jsValidationEmail" type="password" class="form-control" placeholder="Confirm Password" name="conpassword" id="confirm_password" required onchange="validatePassword()" >

@@ -17,7 +17,7 @@
 							
 							<div class="box-body">
 								<div class="row">
-									<div class="col-sm-12 form-group">
+									<div class="col-sm-12 mb-3">
 										<label for="jsValidationnominativo"><b>Enter the name of the new department above</b></label>
 										<input id="jsValidationnominativo" name="dipartimento" type="text" class="form-control" placeholder="ES: Nome Cognome" required>
 										<span class="valid-feedback">Fine!</span>

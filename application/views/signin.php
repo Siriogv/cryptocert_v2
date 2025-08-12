@@ -13,32 +13,32 @@
             <?php $attributes = array("name" => "login", "id" => "login", "class" => "box-body needs-validation");
             echo form_open_multipart("signin/login", $attributes); ?>
             <div class="box-body">
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="loginEmail">Email</label>
                     <input id="loginEmail" required type="email" class="form-control" placeholder="Enter your email" name="email">
                     <span class="invalid-feedback">Enter valid email address.</span>
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="loginPassword">Password</label>
                     <input id="loginPassword" required type="password" class="form-control" placeholder="Enter your password" name="password">
                     <span class="invalid-feedback">Enter your password.</span>
                 </div>
 
                 <?php if ($offcdata->enable_recapture == 1) { ?>
-                    <div class="form-group">
+                    <div class="mb-3">
                         <div class="g-recaptcha" data-sitekey="<?php echo $offcdata->site_key ?>"></div>
                     </div>
                 <?php } ?>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label class="form-checkbox-custom">
                         <input type="checkbox" value="remember-me" id="remember_me">
                         <span class="form-label">Remember me</span>
                     </label>
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <div class="btn-group btn-group-stretch">
                         <button class="btn btn-primary">Signin</button>
                     </div>
