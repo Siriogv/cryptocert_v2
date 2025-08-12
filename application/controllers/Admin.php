@@ -72,96 +72,117 @@ class Admin extends CI_Controller {
 	
 	public function archive()
 	{       //&& $this->input->post('as2')==$this->input->post('as1')
-		if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
-			$name = str_replace(" ","",$_SESSION['logged_incheck']['name']);
-			if($this->input->post('folder')!=''){
-				$origpath = "./cripted/archivio/".$name.'/'.$this->input->post('folder').'/';
-			}else{
-				$origpath = "./cripted/archivio/".$name.'/';
-			}
 		
-			$usrid = $_SESSION['logged_incheck']['id'];
-			//print_r($session->get('logged_incheck'));
-			$config['upload_path']   = $origpath; 
-			$config['allowed_types'] = 'gif|jpg|png|txt|doc|xls|pdf|odt|pps|mp3|avi|mp4|gif|zip|rar|htm|html'; 
-			$this->load->library('upload', $config);
-			//$upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
-			if($this->input->post('newname')!=''){
-                $file_name =$this->input->post('newname').".".pathinfo($_FILES['archive']['name'], PATHINFO_EXTENSION);
-			}else{
-				$file_name =str_replace(" ","_",$_FILES["archive"]["name"]);		
-			}
-			
-			//$this->upload->do_upload('archive');
-			//$data = array('upload_data' => $this->upload->data()); 
-			$ins['path'] ='./cripted/archivio/'.$name.'/'.$file_name; 
-            $extension = pathinfo($_FILES['archive']['name'], PATHINFO_EXTENSION);
-			//echo "$origpath"."/".$file_name;
-			move_uploaded_file($_FILES['archive']['tmp_name'], "$origpath"."/".$file_name);
-			//	die('here');
-			$data=date("d-m-Y H:m");
-			$file="$origpath"."/".$file_name;
-			$encrypted = md5($file_name);
-			$fileb="$origpath"."/".$encrypted;
-			$open=fopen($file, "r");					
-			$contenuto_file=fread($open, filesize($file));
-			$certificazione=hash("sha256", $contenuto_file);
-			$codifica="sha256";
-        	$hex = '';
-			
-			for ($i=0; $i< strlen($certificazione); $i++){
-			$ord = ord($certificazione[$i]);
-			$hexCode = dechex($ord);
-			$n=strlen($ord);
-			$hex .= substr($hexCode, -$n);
-			}
-			$hexx= strToUpper($hex);
-			$ins['contenuto'] = $certificazione;
-			$ins['data'] = $data;
-			$ins['path'] = $file;
-			$ins['codifica'] = $codifica;
-			$ins['hex'] = $hex;
-			$ins['operatore'] = $_SESSION['logged_incheck']['id'];
-			$ins['scadenza'] = $this->input->post('scadenza');
-			$ins['bc'] = '';
-			$ins['bclink'] = '';
-			$ins['alert'] = 0;
-			$ins['adv'] = $encrypted.$extension;
-            $ins['ext_addr'] = 0;
-			$ins['estenzione'] = $extension;
-			$ins['identificativo'] = $this->input->post('pubblic');
-			//print_r($_SESSION);
-			//print_r($ins);die;
-			
-			$this->db->insert('contenuto_certificato',$ins);
-			
-			//INSERT DATA IN ARCHIVO
-			$inarch['crypted'] = $fileb;
-			$inarch['original'] = $file;
-			$inarch['user'] = $_SESSION['logged_incheck']['id'];
-			$this->db->insert('archivio',$inarch);			
-			
-			//INSERT DATA IN registro
+if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
+    $this->load->helper('security');
+    $name = str_replace(" ","",$_SESSION['logged_incheck']['name']);
 
-            $inreg['contenuto'] = $certificazione;
-			$inreg['data'] = $data;
-			$inreg['path'] = $file;
-			$inreg['codifica'] = $fileb;
-			$inreg['hex'] = $hexx;
-			$inreg['operatore'] = $_SESSION['logged_incheck']['id'];
-			$inreg['data_eliminazione'] = '';
-			$inreg['esecutore'] = $encrypted;
-			
-			$this->db->insert('registro',$inreg);
-			$open="log.html";
-			$log=fopen($open, "a+");
-		    fputs($log,"<h5>".$this->input->post('scadenza')." | ".$_SESSION['logged_incheck']['name']." | has uploaded the file: : $file <br>");
-			fclose($log);	
-			
-			//log_message('info', "<h5>il $data $_SESSION[who_utente] ha inserito il file: $file <br>");
-			redirect('admin/filesearch');
-			
-		}
+    // Sanitize folder and build paths
+    $folder = basename($this->input->post('folder'));
+    $folder = sanitize_filename($folder);
+    $relative_dir = 'cripted/archivio/'.$name.'/';
+    if($folder != ''){ $relative_dir .= $folder.'/'; }
+    $upload_dir = FCPATH.$relative_dir;
+
+    if(!is_dir($upload_dir)){
+        if(!mkdir($upload_dir,0755,TRUE)){
+            show_error('Unable to create upload directory.');
+        }
+    }
+
+    $usrid = $_SESSION['logged_incheck']['id'];
+
+    // Sanitize file names
+    $origName = isset($_FILES['archive']['name']) ? basename($_FILES['archive']['name']) : '';
+    $origName = sanitize_filename($origName);
+    $newname = basename($this->input->post('newname'));
+    $newname = sanitize_filename($newname);
+    $extension = pathinfo($origName, PATHINFO_EXTENSION);
+    if($newname != ''){
+        $file_name = $newname.($extension ? '.'.$extension : '');
+    }else{
+        $file_name = str_replace(' ','_',$origName);
+    }
+    if($file_name === '' || $file_name === '.' || $file_name === '..'){
+        show_error('Invalid file name.');
+    }
+
+    $config = array(
+        'upload_path'   => $upload_dir,
+        'allowed_types' => 'gif|jpg|png|txt|doc|xls|pdf|odt|pps|mp3|avi|mp4|zip|rar|htm|html',
+        'max_size'      => 4096,
+        'file_name'     => $file_name
+    );
+    $this->load->library('upload', $config);
+    if(!$this->upload->do_upload('archive')){
+        show_error($this->upload->display_errors());
+    }
+
+    $upload_data = $this->upload->data();
+    $file_name = $upload_data['file_name'];
+    $extension = ltrim($upload_data['file_ext'], '.');
+    $file_full = $upload_data['full_path'];
+    $file = './'.$relative_dir.$file_name;
+    $ins['path'] = $file;
+
+    $encrypted = md5($file_name);
+    $fileb = './'.$relative_dir.$encrypted;
+
+    $data=date("d-m-Y H:m");
+    $open=fopen($file_full, "r");
+    $contenuto_file=fread($open, filesize($file_full));
+    $certificazione=hash("sha256", $contenuto_file);
+    $codifica="sha256";
+    $hex = '';
+    for ($i=0; $i< strlen($certificazione); $i++){
+        $ord = ord($certificazione[$i]);
+        $hexCode = dechex($ord);
+        $n=strlen($ord);
+        $hex .= substr($hexCode, -$n);
+    }
+    $hexx= strToUpper($hex);
+    $ins['contenuto'] = $certificazione;
+    $ins['data'] = $data;
+    $ins['codifica'] = $codifica;
+    $ins['hex'] = $hex;
+    $ins['operatore'] = $_SESSION['logged_incheck']['id'];
+    $ins['scadenza'] = $this->input->post('scadenza');
+    $ins['bc'] = '';
+    $ins['bclink'] = '';
+    $ins['alert'] = 0;
+    $ins['adv'] = $encrypted.$extension;
+    $ins['ext_addr'] = 0;
+    $ins['estenzione'] = $extension;
+    $ins['identificativo'] = $this->input->post('pubblic');
+
+    $this->db->insert('contenuto_certificato',$ins);
+
+    //INSERT DATA IN ARCHIVO
+    $inarch['crypted'] = $fileb;
+    $inarch['original'] = $file;
+    $inarch['user'] = $_SESSION['logged_incheck']['id'];
+    $this->db->insert('archivio',$inarch);
+
+    //INSERT DATA IN registro
+    $inreg['contenuto'] = $certificazione;
+    $inreg['data'] = $data;
+    $inreg['path'] = $file;
+    $inreg['codifica'] = $fileb;
+    $inreg['hex'] = $hexx;
+    $inreg['operatore'] = $_SESSION['logged_incheck']['id'];
+    $inreg['data_eliminazione'] = '';
+    $inreg['esecutore'] = $encrypted;
+
+    $this->db->insert('registro',$inreg);
+    $open="log.html";
+    $log=fopen($open, "a+");
+    fputs($log,"<h5>".$this->input->post('scadenza')." | ".$_SESSION['logged_incheck']['name']." | has uploaded the file: : $file <br>");
+    fclose($log);
+
+    //log_message('info', "<h5>il $data $_SESSION[who_utente] ha inserito il file: $file <br>");
+    redirect('admin/filesearch');
+}
+
 			$L=array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
 			$n1=rand(0,100);
 			$n2=rand(0,1000);
