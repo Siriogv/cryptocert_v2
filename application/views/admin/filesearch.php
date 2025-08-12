@@ -14,9 +14,9 @@ $this->load->model('model_object');
             </nav>
         </div>
 
-<?php if (!empty($files)) { ?>
+<?php if (is_array($certificat) && count($certificat) > 0) { ?>
 <div class="row table-responsive">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" class="form-control mb-3">
+            <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name" class="form-control mb-3">
             <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <?php
                 $i = 1;
@@ -106,6 +106,8 @@ $this->load->model('model_object');
 </main>
 
 <script>
+    document.getElementById("myInput").addEventListener("keyup", myFunction);
+
 function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("myInput");

@@ -1,34 +1,5 @@
-php
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Search Results</title>
-    <!-- Add your styles -->
-</head>
-<body>
-
-    <h1>Search Results</h1>
-
-    <?php if (isset($results) && !empty($results)): ?>
-        <ul>
-        <?php foreach ($results as $result): ?>
-            <li><?= $result->name ?></li> <!-- modify based on your data -->
-        <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>No results found.</p>
-    <?php endif; ?>
-
-</body>
-</html>
-<!DOCTYPE html>
-
-
-
 <html lang="en">
-
-
-
 <head>
 
 
