@@ -1,0 +1,15 @@
+body {
+  overflow-x: hidden;
+}
+
+#sidebar {
+  min-height: 100vh;
+}
+
+#sidebar .nav-link {
+  color: #333;
+}
+
+#sidebar .nav-link.active {
+  font-weight: 500;
+}
