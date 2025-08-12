@@ -629,15 +629,13 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
 	
 
 
-	public function filesearch(){
-		$dir ="cripted/archivio";
-		$a = scandir($dir);
-       // Sort in descending order
-		$b = scandir($dir,1);//print_r($b);die;
-		$data['files'] = $b;
-		$data['title'] = "Search File";
-		$data['department'] = $this->model_object->getAll('dipartimenti');
-		$data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
+       public function filesearch(){
+               $dir ="cripted/archivio";
+               // Sort in descending order and ensure result is always an array
+               $data['files'] = is_dir($dir) ? scandir($dir, 1) : [];
+               $data['title'] = "Search File";
+               $data['department'] = $this->model_object->getAll('dipartimenti');
+               $data['userinfo'] = $this->model_object->getElementById('utenti',$_SESSION['logged_incheck']['id']);
 		
 		if($_SESSION['logged_incheck']['tipologiaUtente']=='admin'){
 			$data['certificat'] = $this->model_object->getAll('contenuto_certificato');	
