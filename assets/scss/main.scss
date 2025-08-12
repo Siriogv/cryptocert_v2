@@ -18,7 +18,17 @@
 */
 
 @import "./abstract/abstract";
-@import "./../vendor/bootstrap/scss/bootstrap.scss";
+
+// Bootstrap 5 variable overrides
+$primary: #0d6efd;
+$secondary: #6c757d;
+$success: #198754;
+$info: #0dcaf0;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #212529;
+
 @import "./base/base";
 @import "./layout/layout";
 @import "./components/component";
