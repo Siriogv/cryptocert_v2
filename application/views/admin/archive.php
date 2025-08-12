@@ -42,7 +42,7 @@
                             </label>
                             <select name="folder" class="form-control">
                                 <option value="">Select</option>
-                                <?php foreach($files as $fol){echo "<pre>";print_r($fol)?>
+                                <?php foreach($files as $fol){?>
                                     <option value="<?php echo $fol->cartella;?>"><?php echo $fol->cartella;?></option>
                                 <?php }?>
                             </select>
