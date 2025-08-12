@@ -198,11 +198,14 @@ class Admin extends CI_Controller {
 	public function deletefile($id){
 		$id = $id;
 		$delfiles = $this->model_object->getAllFromWhere('contenuto_certificato','id="'.$id.'"');
-		$this->db->delete('archivio', array('original' => $delfiles[0]->path));
-		$this->db->delete('registro', array('path' => $delfiles[0]->path));
-		$this->db->delete('contenuto_certificato', array('id' => $id));
-		unlink(base_url().$delfiles[0]->path);
-	    redirect('/admin/filesearch', 'refresh');
+                $this->db->delete('archivio', array('original' => $delfiles[0]->path));
+                $this->db->delete('registro', array('path' => $delfiles[0]->path));
+                $this->db->delete('contenuto_certificato', array('id' => $id));
+                $filepath = FCPATH . $delfiles[0]->path;
+                if (file_exists($filepath)) {
+                        unlink($filepath);
+                }
+            redirect('/admin/filesearch', 'refresh');
 
 	}
 
