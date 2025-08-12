@@ -21,14 +21,19 @@ class Admin extends CI_Controller {
     {
          parent::__construct();
     	 $this->load->helper('url');
-		 $this->load->library('session');
-		 $this->load->library('form_validation');	
-                $this->load->model('model_user');
-                $this->load->model('model_object');
+                $this->load->library('session');
+                $this->load->library('form_validation');
+               $this->load->model('model_user');
+               $this->load->model('model_object');
 
-                $currentTime = time();
-                $time_check = $currentTime - 600;
-                $login_time = $_SESSION['logged_incheck']['time'];
+               if (!isset($_SESSION['logged_incheck']) || !$this->session->userdata('logged_incheck')) {
+                       redirect('signin');
+                       exit;
+               }
+
+               $currentTime = time();
+               $time_check = $currentTime - 600;
+               $login_time = $_SESSION['logged_incheck']['time'];
 
                 if ($login_time < $time_check) {
                         redirect('install/unlock/');
