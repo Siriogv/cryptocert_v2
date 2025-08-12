@@ -5,10 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Sidebar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="dist/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { margin: 0; }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+            z-index: 1;
+            background-color: #343a40;
+        }
+        .sidebar .nav-link {
+            padding: 10px 15px;
+            color: white;
+            transition: 0.3s;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #495057;
+        }
+        .sidebar.open {
+            width: 250px;
+        }
+        .sidebar.icons-only {
+            width: 60px;
+        }
+        .sidebar.icons-only .nav-link span {
+            display: none;
+        }
+        #main {
+            transition: margin-left 0.5s;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -38,6 +72,7 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const sidebar = document.getElementById('sidebar');
     const main = document.getElementById('main');
@@ -65,57 +100,8 @@
         }
     });
 
-    // Initialize as closed
     sidebar.style.width = '0';
     main.style.marginLeft = '0';
 </script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-```
-
-```css
-body {
-    margin: 0;
-}
-
-.sidebar {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0;
-    overflow-x: hidden;
-    transition: 0.5s;
-    z-index: 1;
-    background-color: #343a40; /* Dark background */
-}
-
-.sidebar .nav-link {
-    padding: 10px 15px;
-    color: white;
-    transition: 0.3s;
-}
-
-.sidebar .nav-link:hover {
-    background-color: #495057;
-}
-
-.sidebar.open {
-    width: 250px; /* Width when fully open */
-}
-
-.sidebar.icons-only {
-    width: 60px; /* Width when only icons are shown */
-}
-
-.sidebar.icons-only .nav-link span {
-    display: none; /* Hide text in icons-only state */
-}
-
-#main {
-    transition: margin-left 0.5s;
-    padding: 20px;
-}
