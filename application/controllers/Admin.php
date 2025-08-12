@@ -216,14 +216,13 @@ class Admin extends CI_Controller {
 			$ins['email'] = $this->input->post('email');
 			$ins['password'] = $password;
             $ins['tipologiaUtente'] = $this->input->post('tipologiaUtente');
-			$ins['stato'] = $this->input->post('stato');
-			$ins['autorizzazioni'] = '';
-			$ins['contatti'] = '';
-			$ins['avatar'] = $avatardefault;
-			$ins['nickname'] = '';
-			$ins['dipartimento'] = '';
-			$ins['userwallet'] = $this->input->post('wallet');
-			$ins['stato'] = $this->input->post('status');
+                        $ins['stato'] = $this->input->post('stato');
+                        $ins['autorizzazioni'] = '';
+                        $ins['contatti'] = '';
+                        $ins['avatar'] = $avatardefault;
+                        $ins['nickname'] = '';
+                        $ins['dipartimento'] = '';
+                        $ins['userwallet'] = $this->input->post('wallet');
 			$this->db->insert('utenti',$ins);
 			redirect('admin/listoperator');exit;
 
@@ -284,7 +283,7 @@ class Admin extends CI_Controller {
 			 $ins['autorizzazioni '] = $this->input->post('autorizzazioni');
 			 $ins['contatti'] = $this->input->post('contatti');
 			 $ins['dipartimento'] = $this->input->post('dipartimento'); 
-			 $ins['stato'] = $this->input->post('status'); 
+                        $ins['stato'] = $this->input->post('stato');
 			 $ins['nickname'] = $this->input->post('nickname'); 
 			 $ins['userwallet '] = $this->input->post('wallet');
 			 //echo "<pre>";print_r($ins);die;

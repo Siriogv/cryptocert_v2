@@ -117,20 +117,20 @@
 								<div class="form-group row">
 								<label for="jsValidationLengthMax" class="form-label col-3"> Status</label>
 									
-									<label class="form-radio-custom">
-										<input type="radio" name="status" value="0">
-										<span class="form-label">Inactive</span>
-										
-									</label>
-									<label class="form-radio-custom">
-										<input type="radio" name="status" value="1">
-										<span class="form-label">Active</span>
-									</label>
-									<label class="form-radio-custom">
-										<input type="radio" name="status" value="2">
-										<span class="form-label">Blocked</span>
-									</label>
-								</div>
+                                                                        <label class="form-radio-custom">
+                                                                                <input type="radio" name="stato" value="0">
+                                                                                <span class="form-label">Inactive</span>
+
+                                                                        </label>
+                                                                        <label class="form-radio-custom">
+                                                                                <input type="radio" name="stato" value="1">
+                                                                                <span class="form-label">Active</span>
+                                                                        </label>
+                                                                        <label class="form-radio-custom">
+                                                                                <input type="radio" name="stato" value="2">
+                                                                                <span class="form-label">Blocked</span>
+                                                                        </label>
+                                                               </div>
 								
 							</div>
 							
