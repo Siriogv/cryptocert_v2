@@ -73,17 +73,17 @@ class Admin extends CI_Controller {
 
 	}
 	
-	public function archive()
-	{       //&& $this->input->post('as2')==$this->input->post('as1')
-		
+        public function archive()
+        {       //&& $this->input->post('as2')==$this->input->post('as1')
+
 if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
     $this->load->helper('security');
     $name = str_replace(" ","",$_SESSION['logged_incheck']['name']);
 
     // Sanitize folder and build paths
-    $folder = basename($this->input->post('folder'));
+    $folder = $this->security->xss_clean($this->input->post('folder'));
     $folder = sanitize_filename($folder);
-    $relative_dir = 'cripted/archivio/'.$name.'/';
+    $relative_dir = '../uploads/archivio/'.$name.'/';
     if($folder != ''){ $relative_dir .= $folder.'/'; }
     $upload_dir = FCPATH.$relative_dir;
 
@@ -95,41 +95,34 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
 
     $usrid = $_SESSION['logged_incheck']['id'];
 
-    // Sanitize file names
-    $origName = isset($_FILES['archive']['name']) ? basename($_FILES['archive']['name']) : '';
-    $origName = sanitize_filename($origName);
-    $newname = basename($this->input->post('newname'));
-    $newname = sanitize_filename($newname);
+    // Generate random filename and validate extension
+    $origName = isset($_FILES['archive']['name']) ? $this->security->xss_clean($_FILES['archive']['name']) : '';
     $extension = pathinfo($origName, PATHINFO_EXTENSION);
-    if($newname != ''){
-        $file_name = $newname.($extension ? '.'.$extension : '');
-    }else{
-        $file_name = str_replace(' ','_',$origName);
-    }
-    if($file_name === '' || $file_name === '.' || $file_name === '..'){
-        show_error('Invalid file name.');
-    }
+    $file_name = bin2hex(random_bytes(16)).($extension ? '.'.$extension : '');
 
     $config = array(
         'upload_path'   => $upload_dir,
         'allowed_types' => 'gif|jpg|png|txt|doc|xls|pdf|odt|pps|mp3|avi|mp4|zip|rar|htm|html',
         'max_size'      => 4096,
-        'file_name'     => $file_name
+        'file_name'     => $file_name,
+        'detect_mime'   => TRUE
     );
     $this->load->library('upload', $config);
     if(!$this->upload->do_upload('archive')){
-        show_error($this->upload->display_errors());
+        $error = $this->upload->display_errors();
+        log_message('error', 'File upload failed: '.$error);
+        show_error($error);
     }
 
     $upload_data = $this->upload->data();
     $file_name = $upload_data['file_name'];
     $extension = ltrim($upload_data['file_ext'], '.');
     $file_full = $upload_data['full_path'];
-    $file = './'.$relative_dir.$file_name;
+    $file = $relative_dir.$file_name;
     $ins['path'] = $file;
 
     $encrypted = md5($file_name);
-    $fileb = './'.$relative_dir.$encrypted;
+    $fileb = $relative_dir.$encrypted;
 
     $data=date("d-m-Y H:m");
     $open=fopen($file_full, "r");
@@ -149,14 +142,14 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
     $ins['codifica'] = $codifica;
     $ins['hex'] = $hex;
     $ins['operatore'] = $_SESSION['logged_incheck']['id'];
-    $ins['scadenza'] = $this->input->post('scadenza');
+    $ins['scadenza'] = $this->security->xss_clean($this->input->post('scadenza'));
     $ins['bc'] = '';
     $ins['bclink'] = '';
     $ins['alert'] = 0;
     $ins['adv'] = $encrypted.$extension;
     $ins['ext_addr'] = 0;
     $ins['estenzione'] = $extension;
-    $ins['identificativo'] = $this->input->post('pubblic');
+    $ins['identificativo'] = $this->security->xss_clean($this->input->post('pubblic'));
 
     $this->db->insert('contenuto_certificato',$ins);
 
@@ -179,7 +172,8 @@ if($_POST ){ //print_r($_SESSION['logged_incheck']);die;
     $this->db->insert('registro',$inreg);
     $open="log.html";
     $log=fopen($open, "a+");
-    fputs($log,"<h5>".$this->input->post('scadenza')." | ".$_SESSION['logged_incheck']['name']." | has uploaded the file: : $file <br>");
+    $scadenza = $this->security->xss_clean($this->input->post('scadenza'));
+    fputs($log,"<h5>".$scadenza." | ".$_SESSION['logged_incheck']['name']." | has uploaded the file: : $file <br>");
     fclose($log);
 
     //log_message('info', "<h5>il $data $_SESSION[who_utente] ha inserito il file: $file <br>");
